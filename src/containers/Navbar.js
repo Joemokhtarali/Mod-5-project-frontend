@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 
 
 
@@ -17,14 +18,14 @@ class Navbar extends React.Component {
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav">
-                        <a href="#" class="nav-item nav-link active">Home</a>
-                        <a href="#" class="nav-item nav-link">Profile</a>
-                        <a href="#" class="nav-item nav-link">Messages</a>
-                        <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
+                        <NavLink to='/' exact className="nav-item nav-link"> Home </NavLink>
+                        <NavLink to='/categories' exact className="nav-item nav-link"> Categories </NavLink>
+                        
+                        
                     </div>
-                    <div class="navbar-nav ml-auto">
-                        <a href="#" class="nav-item nav-link">Login</a>
-                        <a href="#" class="nav-item nav-link">Sign up</a>
+                    <div className="navbar-nav ml-auto">
+                        <NavLink to='/login' exact className="nav-item nav-link"> Login </NavLink>
+                        <NavLink to='/signup' exact className="nav-item nav-link"> Sign up </NavLink>
                     </div>
                 </div>
             </nav>
