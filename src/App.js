@@ -1,18 +1,33 @@
 import React from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from '../src/containers/Navbar'
+import { connect } from 'react-redux'
+import { fetchCateogriesCreator, fetchActivitiesCreator } from './actionCreators/actionCreater'
+import CateogriesContainer from './containers/categoriesContainer'
 
 
-// import ActivitiesContainer from './containers/ActivitiesContainer';
-// import Chatroom from './components/chatroom'
+class App extends React.Component {
 
-function App() {
-  return (
-    <div className="App">
-       <h1>Home Page</h1>
-    </div>
-  );
+  componentDidMount() {
+    this.props.fetchCategories()
+    this.props.fetchActivities()
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <CateogriesContainer  />
+      </div>
+    );
+  }
+
 }
 
-export default App;
+const mdp = dispatch => {
+  return {
+
+    fetchCategories: () => dispatch(fetchCateogriesCreator()),
+    fetchActivities: () => dispatch(fetchActivitiesCreator()),
+  }
+}
+
+export default connect(null, mdp)(App)
