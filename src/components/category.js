@@ -6,7 +6,7 @@ class Category extends React.Component{
     render(){
         return(
             <div className='category'>
-                <h1> Category: {this.props.category.category_type} </h1>
+                <p> Category: {this.props.category.category_type} </p>
             </div>
         )
     }

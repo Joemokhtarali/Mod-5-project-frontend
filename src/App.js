@@ -3,6 +3,9 @@ import './App.css';
 import { connect } from 'react-redux'
 import { fetchCateogriesCreator, fetchActivitiesCreator } from './actionCreators/actionCreater'
 import CateogriesContainer from './containers/categoriesContainer'
+// import { Redirect, useHistory } from "react-router-dom"
+
+import AddActivity from './forms/addActivity'
 
 
 class App extends React.Component {
@@ -15,7 +18,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <div className='slides'> Slides </div>
+        <h2>Browse By Category: </h2>
         <CateogriesContainer  />
+        <h2>Recently Viewd: </h2>
+        <div className='recently-viewed'> Views</div>
+        <AddActivity />
       </div>
     );
   }
