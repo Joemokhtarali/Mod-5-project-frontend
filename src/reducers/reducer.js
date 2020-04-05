@@ -24,10 +24,10 @@ function reducer(state = defaultState, action) {
             return {
                 ...state, activities: [...state.activities, action.payload]
             }
-        // case 'CURRENT_USER':
-        //     return {
-        //         ...state, currentUser: action.payload
-        //     }
+        case 'ASSIGN_USER':
+            return {
+                ...state, currentUser: action.payload.user
+            }
 
         default:
             return state

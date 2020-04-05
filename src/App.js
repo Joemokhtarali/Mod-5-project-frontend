@@ -1,17 +1,19 @@
 import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
-import { fetchCateogriesCreator, fetchActivitiesCreator } from './actionCreators/actionCreater'
+import { fetchCateogriesCreator, fetchActivitiesCreator, assignCurrentUser } from './actionCreators/actionCreater'
 import CateogriesContainer from './containers/categoriesContainer'
 // import { Redirect, useHistory } from "react-router-dom"
 import Navbar from '../src/containers/Navbar'
 import AddActivity from './forms/addActivity'
+import Login from './forms/login';
+import Signup from './forms/signup';
 
 
 class App extends React.Component {
 
   state = {
-    currentUser: null
+    currentUser: null 
   }
 
   componentDidMount() {
@@ -40,7 +42,7 @@ setUser = (user) => {
     currentUser: user
   }, () => {
     localStorage.user_id = user.id
-    this.props.history.push('/')
+    this.props.history.push('/categories')
   })
 }
 
@@ -58,12 +60,14 @@ render() {
   return (
     <div className="App">
       <Navbar setUser={this.setUser} logout={this.logout} />
-      <div className='slides'> Slides </div>
-      <h2>Browse By Category: </h2>
+      <div className='slides'>  </div>
+      <Login setUser={this.setUser}/>
+      <Signup setUser={this.setUser}/>
+      {/* <h2>Browse By Category: </h2>
       <CateogriesContainer />
       <h2>Recently Viewd: </h2>
       <div className='recently-viewed'> Views</div>
-      <AddActivity />
+      <AddActivity /> */}
     </div>
   );
 }
@@ -75,6 +79,7 @@ const mdp = dispatch => {
 
     fetchCategories: () => dispatch(fetchCateogriesCreator()),
     fetchActivities: () => dispatch(fetchActivitiesCreator()),
+    // assignCurrentUser: () => dispatch(assignCurrentUser)
   }
 }
 

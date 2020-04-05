@@ -8,3 +8,5 @@ export const fetchActivitiesCreator = () => dispatch => {
         dispatch({type: 'FETCH_ACTIVITIES', payload: {activities: data}})
     })
 }
+
+// export const assignCurrentUser = () => ({type: 'ASSIGN_USER', payload: user})

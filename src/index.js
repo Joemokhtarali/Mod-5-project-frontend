@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 import reducer from './reducers/reducer' 
 import Login from './forms/login';
 import Signup from './forms/signup';
+import categoriesContainer from './containers/categoriesContainer';
 
 
 const store = createStore(reducer, applyMiddleware(thunk))
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Route exact path='/' component={App} />
       <Route exact path='/login' component={Login} />
       <Route exact path='/signup' component={Signup} />
+      <Route exact path='/categories' component={categoriesContainer} />
     </Router> 
   </Provider>
   ,document.getElementById('root')
