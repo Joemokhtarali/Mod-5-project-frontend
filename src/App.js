@@ -17,30 +17,56 @@ class App extends React.Component {
   componentDidMount() {
     this.props.fetchCategories()
     this.props.fetchActivities()
-  }
+    const user_id = localStorage.user_id
 
-  setUser = (user) => {
-    this.setState({
-      currentUser: user
-    }, () => {
-        localStorage.user_id = user.id
-        this.props.history.push('/')
+    if (user_id) {
+      fetch('http://localhost:3000/auto_login', {
+        headers: {
+          'Authorization': user_id
+        }
+      }).then(resp => resp.json()).then(response => {
+        if (response.errors) {
+          alert(response.errors)
+        } else {
+          this.setState({ currentUser: response })
+        }
       })
     }
-
-  render() {
-    return (
-      <div className="App">
-        <Navbar setUser={this.setUser}/> 
-        <div className='slides'> Slides </div>
-        <h2>Browse By Category: </h2>
-        <CateogriesContainer  />
-        <h2>Recently Viewd: </h2>
-        <div className='recently-viewed'> Views</div>
-        <AddActivity />
-      </div>
-    );
   }
+
+
+setUser = (user) => {
+  this.setState({
+    currentUser: user
+  }, () => {
+    localStorage.user_id = user.id
+    this.props.history.push('/')
+  })
+}
+
+logout = () => {
+  this.setState({
+    currentUser: null
+  }, () => {
+    localStorage.removeItem('user_id')
+    this.props.history.push('/')
+  }
+  )
+}
+
+render() {
+  return (
+    <div className="App">
+      <Navbar setUser={this.setUser} logout={this.logout} />
+      <div className='slides'> Slides </div>
+      <h2>Browse By Category: </h2>
+      <CateogriesContainer />
+      <h2>Recently Viewd: </h2>
+      <div className='recently-viewed'> Views</div>
+      <AddActivity />
+    </div>
+  );
+}
 
 }
 

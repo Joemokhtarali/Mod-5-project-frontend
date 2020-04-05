@@ -28,9 +28,7 @@ class Signup extends React.Component {
         
 
 
-    render() {
-        console.log(this.state);
-        
+    render() {        
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>

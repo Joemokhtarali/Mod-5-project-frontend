@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Login from '../forms/login';
 import Signup from '../forms/signup';
 
@@ -20,13 +20,13 @@ class Navbar extends React.Component {
 
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav">
-                        <NavLink to='/' exact className="nav-item nav-link"> Home </NavLink>
-                        <NavLink to='/categories' exact className="nav-item nav-link"> Categories </NavLink>
+                        <Link to='/' ><button> Home </button>  </Link>
+                        <Link to='/categories'><button> Categories </button>  </Link>
                     </div>
                     
                     <div className="navbar-nav ml-auto">
-                        <NavLink to='/login' exact className="nav-item nav-link"> Login </NavLink>
-                        <NavLink to='/signup' exact className="nav-item nav-link"> Sign up </NavLink>
+                        <Link to='/login'><button> Login </button>  </Link>
+                        <Link to='/signup'><button>  Sign up </button> </Link>
                     </div>
                 </div>
             </nav>
