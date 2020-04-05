@@ -12,21 +12,19 @@ class Signup extends React.Component {
     }
     
     handleChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+        this.setState({[event.target.name]: event.target.value})
     }
 
     handleSubmit = event => {
         event.preventDefault()
         
-        fetch('http://localhost:3000/users', {
+        fetch('http://localhost:3000/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
-        }).then(resp => resp.json()).then(response => {if(response.errors){alert(response.errors)}})}
+        }).then(resp => resp.json()).then(response => {if(response.errors){alert(response.errors)}else{this.props.setUser(response)}})}
         
 
 
