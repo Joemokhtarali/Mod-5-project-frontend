@@ -27,6 +27,11 @@ class Activity extends React.Component {
             .then(response => { if (response.errors) { alert(response.errors) } })
     }
 
+    deleteActivity = () => {
+        fetch(`http://localhost:3000/activities/${this.props.activity.id}`, {
+        method: "DELETE" })
+    }
+
 
     render() {
         
@@ -36,7 +41,7 @@ class Activity extends React.Component {
                 {/* <Chatroom /> */}
                 {this.props.currentUser.id === this.props.activity.user_id ? null : <button onClick={this.joinActivity} >Join Activity</button>}
 
-                {this.props.currentUser.id === this.props.activity.user_id ? <button onClick={this.switchEditActivityState}>Edit Activity</button> : null}
+                {this.props.currentUser.id === this.props.activity.user_id ? <div><button onClick={this.switchEditActivityState}>Edit Activity</button> <button onClick={this.deleteActivity}>Delete Activity</button></div>: null}
                 {this.state.editActivityState ? <div><EditActivity activity={this.props.activity}/> <button onClick={this.switchEditActivityState}>Close Form</button> </div>: null}
             </div>
         )
