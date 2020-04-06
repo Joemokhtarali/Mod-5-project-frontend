@@ -20,8 +20,7 @@ class Navbar extends React.Component {
 
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav">
-                        <Link to='/' ><button> Home </button>  </Link>
-                        <Link to='/categories'><button> Categories </button>  </Link>
+                        <Link to='/'  ><button> Home </button>  </Link>
                     </div>
                     
                     <div className="navbar-nav ml-auto">

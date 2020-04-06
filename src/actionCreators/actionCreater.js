@@ -9,4 +9,4 @@ export const fetchActivitiesCreator = () => dispatch => {
     })
 }
 
-// export const assignCurrentUser = () => ({type: 'ASSIGN_USER', payload: user})
+export const assignCurrentUser = (user) => ({type: 'ASSIGN_USER', payload: user}) 

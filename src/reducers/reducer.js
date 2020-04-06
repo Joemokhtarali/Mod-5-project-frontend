@@ -4,9 +4,8 @@ const defaultState = {
     currentUser: null
 }
 
-function reducer(state = defaultState, action) {
-    // console.log('in reducer', action, state)
-    switch (action.type) {
+function reducer(state = defaultState, action) { 
+    switch (action.type) { 
 
         case 'FETCH_CATEGORIES':
             return {

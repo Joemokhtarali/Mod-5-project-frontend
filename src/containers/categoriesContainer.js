@@ -1,5 +1,5 @@
 import React from 'react'
-import Category from '../components/category'
+import Category from '../components/category' 
 import { connect } from 'react-redux'
 
  
@@ -8,10 +8,12 @@ class CateogriesContainer extends React.Component{
     
 
     renderCategories = () => {
-        return this.props.categories.map(cat => <Category key={cat.id} category={cat}/>)
+        return this.props.categories.map(cat => <Category key={cat.id} category={cat} activities={this.props.activities}/>)
     }
 
     render(){
+        console.log(this.props.activities);
+        
         return(
             <div>
                 <h1> CateogriesContainer </h1>
@@ -21,7 +23,7 @@ class CateogriesContainer extends React.Component{
     }
 }
 
-const msp = state => {
+const msp = state => { 
     return {
         categories: state.categories,
         activities: state.activities

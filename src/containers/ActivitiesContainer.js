@@ -1,24 +1,19 @@
 import React from 'react'
+import AddActivity from '../forms/addActivity'
+import Activity from '../components/activity'
 
-class ActivitiesContainer extends React.Component {
 
-    state ={
-        activities: []
+const ActivitiesContainer = (props) => {
+    function renderActivities() {
+        return props.activities.map(act => <Activity activity={act} key={act.id}/>)
     }
-
-    componentDidMount() {
-        fetch('http://localhost:3000/activities').then(resp => resp.json()).then(data => this.setState({activities: data}))
-    }
-
-    render() {
-        console.log(this.state.activities);
-        
-        return (
-            <div>
-                Hello
-            </div>
-        )
-    }
+    return (
+        <div>
+            
+            {renderActivities()}
+        </div>
+    )
 }
+
 
 export default ActivitiesContainer
