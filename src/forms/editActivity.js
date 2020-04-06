@@ -3,19 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-
 class EditActivity extends React.Component {
-
+    
+    
     state = {
-        name: '',
-        activityType: '',
-        image: '',
-        about: '',
+        name: this.props.activity.name,
+        activityType: this.props.activity.activityType,
+        image: this.props.activity.image,
+        about: this.props.activity.about,
         date: new Date(),
-        rating: 5,
-        user_id: 1,
-        category_id: 1,
-        address: ''
+        address: this.props.activity.address
     }
 
     handleChange = event => {
@@ -47,9 +44,10 @@ class EditActivity extends React.Component {
 
 
 
-
 render() {
+   console.log(this.state);
     return (
+        
         <div>
             <form onSubmit={this.handleSubmit}>
                 <label >Name:</label>
@@ -72,7 +70,7 @@ render() {
                 <label >Date:</label>
                 <DatePicker selected={this.state.date} value={this.state.date} onChange={this.handleDateChange} />
                 {/* showTimeSelect dateFormat="Pp" */}
-                <button>AddActivity</button>
+                <button>Edit Activity</button>
             </form>
         </div>
     )
