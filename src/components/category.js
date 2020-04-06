@@ -8,25 +8,28 @@ class Category extends React.Component {
         showActivities: false
     }
 
-    handleClick = () => {
-        this.setState({showActivities: !this.state.showActivities})
+
+    renderActivities = () => {
+        //    debugger
+        return this.props.activities.filter(a => a.category_id === this.props.category.id)
+
     }
-    //    function renderActivities(){
-    //     //    debugger
-    //         // let categoryActivities = props.activities.select(a => a.category_id === props.category.id)
 
-    //     }
+    changeState = () => {
+        this.setState({ showActivities: !this.state.showActivities })
+    }
     render() {
-        console.log(this.state.showActivities);
-        
         return (
-            <div className='category'>
-                    <p >Category: {this.props.category.category_type} </p>
-                    <img src={this.props.category.image} height='100px'></img>
-                    <ActivitiesContainer activities={this.props.activities}/>
-                    <button onClick={this.handleClick}></button>
+            <div>
+                {this.state.showActivities ?  <ActivitiesContainer activities={this.renderActivities()} /> :
 
-                </div>
+                    <div className='category'>
+                        <p onClick={this.changeState}>Category: {this.props.category.category_type} </p>
+                        <img src={this.props.category.image} height='100px'></img>
+                    </div >
+                }
+            </div>
+
         )
 
     }

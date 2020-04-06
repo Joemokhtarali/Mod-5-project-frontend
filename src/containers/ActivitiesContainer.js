@@ -11,6 +11,7 @@ const ActivitiesContainer = (props) => {
         <div>
             
             {renderActivities()}
+            
         </div>
     )
 }

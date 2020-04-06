@@ -8,7 +8,7 @@ class Home extends React.Component {
             <div>
                 <h2>Slides Of Categories</h2>
                 <h2>Browse By Category</h2>
-                <CateogriesContainer />
+                <CateogriesContainer /> 
             </div>
         )
     }
