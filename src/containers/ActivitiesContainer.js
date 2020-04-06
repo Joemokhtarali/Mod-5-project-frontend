@@ -9,9 +9,7 @@ const ActivitiesContainer = (props) => {
     }
     return (
         <div>
-            
             {renderActivities()}
-
         </div>
     )
 }

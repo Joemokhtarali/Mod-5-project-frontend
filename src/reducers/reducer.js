@@ -1,7 +1,7 @@
 const defaultState = {
     categories: [],
     activities: [],
-    currentUser: null
+    currentUser: {id: 1, username:'Mocha', name:'Mokhtar', password:'1234', email: 'joemokhtarali@gmail.com',image:''}
 }
 
 function reducer(state = defaultState, action) { 

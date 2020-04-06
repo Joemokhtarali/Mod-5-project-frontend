@@ -5,8 +5,9 @@ import { connect } from 'react-redux'
 class CateogriesContainer extends React.Component {
 
 
+
     renderCategories = () => {
-        return this.props.categories.map(cat => <Category key={cat.id} category={cat} activities={this.props.activities.filter(act => act.category_id === cat.id)} />)
+        return this.props.categories.map(category => <Category key={category.id} category={category} activities={category.activities}/>)
     }
 
     render() {
