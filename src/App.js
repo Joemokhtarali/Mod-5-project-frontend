@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
-import { fetchCateogriesCreator, fetchActivitiesCreator, assignCurrentUser } from './actionCreators/actionCreater'
+import { fetchCateogriesCreator, fetchActivitiesCreator, assignCurrentUser, removeCurrentUser } from './actionCreators/actionCreater'
 // import { Redirect, useHistory } from "react-router-dom"
 import Navbar from '../src/containers/Navbar'
 // import AddActivity from './forms/addActivity'
@@ -75,7 +75,8 @@ const mdp = dispatch => {
 
     fetchCategories: () => dispatch(fetchCateogriesCreator()),
     fetchActivities: () => dispatch(fetchActivitiesCreator()),
-    assignCurrentUser: () => dispatch(assignCurrentUser())
+    assignCurrentUser: () => dispatch(assignCurrentUser()),
+    removeCurrentUser: () => dispatch(removeCurrentUser())
   }
 }
 

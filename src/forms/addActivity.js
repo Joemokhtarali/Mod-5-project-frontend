@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from 'react-redux'
+import { fetchPostActivityCreator } from '../actionCreators/actionCreater'
 
 
 class AddActivity extends React.Component {
@@ -34,16 +35,15 @@ class AddActivity extends React.Component {
     handleSubmit = event => {
         event.preventDefault()
         let data = { ...this.state, category_id: parseInt(this.state.category_id) }
-
-        console.log('fetching', data)
-        fetch('http://localhost:3000/activities', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(resp => resp.json())
-            .then(response => { if (response.errors) { alert(response.errors) } })
+        this.props.fetchPostActivityCreator(data)
+        // fetch('http://localhost:3000/activities', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // }).then(resp => resp.json())
+        //     .then(response => { if (response.errors) { alert(response.errors) } })
     }
 
     // selectOptionsFunction = () => {
@@ -102,6 +102,6 @@ const msp = (state) => {
     }
 }
 
-export default connect(msp)(AddActivity)
+export default connect(msp, { fetchPostActivityCreator })(AddActivity)
 
 
