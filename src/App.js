@@ -9,6 +9,7 @@ import Login from './forms/login';
 import Signup from './forms/signup';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './containers/home'
+import ActivityPage from './components/activityPage';
 
 
 class App extends React.Component {
@@ -64,6 +65,7 @@ render() {
       <Route exact path='/' component={Home} />
       <Route path='/login' render={()=><Login setUser={this.setUser}/>} />
       <Route path='/signup' component={Signup} />
+      <Route path='/activities/:id' component={ActivityPage} />
     </Router> 
   );
 }

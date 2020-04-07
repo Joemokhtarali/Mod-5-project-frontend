@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Chatroom from './chatroom'
 import EditActivity from '../forms/editActivity'
 import { fetchDeleteActivityCreator } from '../actionCreators/actionCreater'
+import { Link } from 'react-router-dom'
 
 class Activity extends React.Component {
 
@@ -47,7 +48,8 @@ class Activity extends React.Component {
 
         return (
             <div className='activity'>
-                <p>{this.props.activity.name}</p>
+                <Link key={this.props.id} to={`/activities/${this.props.activity.id}`}>{this.props.activity.name}</Link>
+                {/* <Link to=`/activities/${}`><p>{this.props.activity.name}</p></Link> */}
                 {/* <Chatroom /> */}
                 {this.props.currentUser.id === this.props.activity.user_id ? null : <button onClick={this.joinActivity} >Join Activity</button>}
 
