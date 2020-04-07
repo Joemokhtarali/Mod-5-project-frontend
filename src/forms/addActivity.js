@@ -5,7 +5,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { connect } from 'react-redux'
 import { fetchPostActivityCreator } from '../actionCreators/actionCreater'
 
-
 class AddActivity extends React.Component {
 
     state = {
@@ -36,34 +35,7 @@ class AddActivity extends React.Component {
         event.preventDefault()
         let data = { ...this.state, category_id: parseInt(this.state.category_id) }
         this.props.fetchPostActivityCreator(data)
-        // fetch('http://localhost:3000/activities', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // }).then(resp => resp.json())
-        //     .then(response => { if (response.errors) { alert(response.errors) } })
     }
-
-    // selectOptionsFunction = () => {
-    //     let newSelect = document.createElement('select')
-    //     newSelect.name="category_id" 
-    //     newSelect.value= this.state.value
-    //     newSelect.onChange= this.handleChange
-
-    //     for (let i = 0; i <= this.props.categories; i++) {
-    //         let category = this.props.categories[i]
-    //         let opt = document.createElement("option");
-    //         opt.value = i + 1;
-    //         opt.innerText = category.name.toUpperCase(); // whatever property it has
-
-    //         newSelect.appendChild(opt);
-    //         return opt
-    //     }
-
-    // }
-
 
     render() {
         return (
@@ -104,4 +76,20 @@ const msp = (state) => {
 
 export default connect(msp, { fetchPostActivityCreator })(AddActivity)
 
+  // selectOptionsFunction = () => {
+    //     let newSelect = document.createElement('select')
+    //     newSelect.name="category_id" 
+    //     newSelect.value= this.state.value
+    //     newSelect.onChange= this.handleChange
 
+    //     for (let i = 0; i <= this.props.categories; i++) {
+    //         let category = this.props.categories[i]
+    //         let opt = document.createElement("option");
+    //         opt.value = i + 1;
+    //         opt.innerText = category.name.toUpperCase(); // whatever property it has
+
+    //         newSelect.appendChild(opt);
+    //         return opt
+    //     }
+
+    // }

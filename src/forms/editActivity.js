@@ -2,6 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { fetchPatchActivityCreator } from '../actionCreators/actionCreater'
+import { connect } from 'react-redux'
 
 class EditActivity extends React.Component {
 
@@ -29,26 +31,12 @@ class EditActivity extends React.Component {
     };
 
     handleSubmit = event => {
-        console.log('fetching 1');
-        
         event.preventDefault()
         let data = { ...this.state, category_id: parseInt(this.state.category_id) }
+        let id = this.props.activity.id
 
-        console.log('fetching', data)
-        fetch(`http://localhost:3000/activities/${this.props.activity.id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: "application/json"
-            },
-            body: JSON.stringify(data)
-        }).then(resp => resp.json())
-            .then(response => {
-                if (response.errors) { alert(response.errors) }
-                else {
-                    console.log('fetching success');
-                }
-            })
+        this.props.fetchPatchActivityCreator(id, data)
+            
     }
 
 
@@ -85,6 +73,6 @@ class EditActivity extends React.Component {
     }
 }
 
-export default EditActivity
+export default connect(null, { fetchPatchActivityCreator })(EditActivity)
 
 

@@ -1,13 +1,13 @@
 const defaultState = {
     categories: [],
     activities: [],
-    currentUser: {id: 1, username:'Mocha', name:'Mokhtar', password:'1234', email: 'joemokhtarali@gmail.com',image:''}
+    currentUser: { id: 1, username: 'Mocha', name: 'Mokhtar', password: '1234', email: 'joemokhtarali@gmail.com', image: '' }
 }
 
-function reducer(state = defaultState, action) { 
-    switch (action.type) { 
+function reducer(state = defaultState, action) {
+    switch (action.type) {
 
-        case 'FETCH_CATEGORIES':
+        case 'FETCH_CATEGORIES': 
             return {
                 ...state, categories: action.payload.categories
             }
@@ -15,27 +15,29 @@ function reducer(state = defaultState, action) {
             return {
                 ...state, activities: action.payload.activities
             }
-        // case 'ADD_CATEGORY':
-        //     return {
-        //         ...state, categories: [...state.categories, action.payload]
-        //     }
+        case 'ADD_CATEGORY':
+            return {
+                ...state, categories: [...state.categories, action.payload]
+            }
 
         case 'ADD_ACTIVITY':
             return {
                 ...state, activities: [...state.activities, action.payload]
             }
         case 'EDIT_ACTIVITY':
-            
             let activitiesCopy = [...state.activities]
-            let activity = action.payload
-            let index = activitiesCopy.indexOf(activity)
+            let activityIndex = activitiesCopy.findIndex(activity => activity.id === action.payload.id)
+            activitiesCopy[activityIndex] = action.payload
 
             return {
-                ...state, activities: [...state.activities, action.payload]
+                ...state, activities: activitiesCopy
             }
         case 'DELETE_ACTIVITY':
+            let activitiesAd = [...state.activities.filter(act => act.id !== action.payload)]
+            console.log(activitiesAd);
+            
             return {
-                ...state, activities: [...state.activities.filter(act => act !== action.payload)]
+                ...state, activities: activitiesAd
             }
 
 
@@ -43,7 +45,7 @@ function reducer(state = defaultState, action) {
             return {
                 ...state, currentUser: action.payload
             }
-        case 'REMOVE_USER': 
+        case 'REMOVE_USER':
             return {
                 ...state, currentUser: null
             }
@@ -53,4 +55,4 @@ function reducer(state = defaultState, action) {
     }
 }
 
-export default reducer 
+export default reducer

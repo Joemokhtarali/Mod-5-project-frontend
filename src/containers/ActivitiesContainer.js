@@ -1,5 +1,4 @@
 import React from 'react'
-import AddActivity from '../forms/addActivity'
 import Activity from '../components/activity'
 
  
