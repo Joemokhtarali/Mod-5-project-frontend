@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Chatroom from './chatroom'
 import EditActivity from '../forms/editActivity'
+import { fetchDeleteActivityCreator } from '../actionCreators/actionCreater'
 
 class Activity extends React.Component {
 
@@ -36,9 +37,9 @@ class Activity extends React.Component {
     }
 
     deleteActivity = () => {
-        fetch(`http://localhost:3000/activities/${this.props.activity.id}`, {
-            method: "DELETE"
-        })
+        // debugger
+        let id = this.props.activity.id
+        this.props.fetchDeleteActivityCreator(id)
     }
 
 
@@ -63,4 +64,4 @@ const msp = (state) => {
     }
 }
 
-export default connect(msp)(Activity)
+export default connect(msp, { fetchDeleteActivityCreator })(Activity)
