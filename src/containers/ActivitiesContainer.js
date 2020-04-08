@@ -1,7 +1,6 @@
 import React from 'react'
 import Activity from '../components/activity'
-import ActivityPage from '../components/activityPage'
-import { BrowserRouter as Route } from 'react-router-dom'
+import '../../src/index.css'
 
  
 const ActivitiesContainer = (props) => {
@@ -10,8 +9,7 @@ const ActivitiesContainer = (props) => {
     }
     
     return (
-        <div>            
-            {/* <Route exact path='/:id' component={ActivityPage}/> */}
+        <div className='belt'>            
             {renderActivities()}
         </div>
     ) 
