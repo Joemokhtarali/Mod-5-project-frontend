@@ -2,9 +2,7 @@ import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
 import { fetchCateogriesCreator, fetchActivitiesCreator, assignCurrentUser, removeCurrentUser } from './actionCreators/actionCreater'
-// import { Redirect, useHistory } from "react-router-dom"
 import Navbar from '../src/containers/Navbar'
-// import AddActivity from './forms/addActivity'
 import Login from './forms/login';
 import Signup from './forms/signup';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -13,7 +11,6 @@ import ActivityPage from './components/activityPage';
 
 
 class App extends React.Component {
-
 
   componentDidMount() {
     this.props.fetchCategories()
@@ -56,12 +53,11 @@ logout = () => {
 }
 
 render() {
-  console.log('from App', this.props.activities);
-  
   return (
     <Router>
       <Navbar setUser={this.setUser} logout={this.logout} />
-      <Route exact path='/' component={Home} />
+      <Route exact path='/Home' component={Home} />
+      {/* <Route exact path='/' component={Welcome} /> */}
       <Route path='/login' render={()=><Login setUser={this.setUser}/>} />
       <Route path='/signup' component={Signup} />
       <Route path='/activities/:id' component={ActivityPage} />

@@ -9,12 +9,13 @@ class ActivityPage extends React.Component {
     state = {
         activity: null,
         host: null,
+        participants: [],
         editActivityState: false,
     }
     componentDidMount() {
         fetch(`http://localhost:3000/activities/${this.props.match.params.id}`)
             .then(resp => resp.json())
-            .then(data => this.setState({ activity: data, host: data.user }))
+            .then(data => this.setState({ activity: data, host: data.user, participants: data.participants}))
     }
 
     switchEditActivityState = () => {
@@ -36,20 +37,17 @@ class ActivityPage extends React.Component {
     }
 
     deleteActivity = () => {
-        // debugger
         let id = this.state.activity.id
         this.props.fetchDeleteActivityCreator(id)
-        this.props.history.push('/')
+        this.props.history.push('/home')
     }
 
     render() {
-        console.log(this.state.host);
-
+        console.log(this.state);
         return (
             <div>
                 {this.state.activity && this.state.host ?
                     <div>
-
                         <h3>{this.state.activity.name}</h3>
                         <h5>Happening on:{this.state.activity.date}</h5>
                         <h4>Created By: {this.state.host.name}</h4>
