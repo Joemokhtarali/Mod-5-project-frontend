@@ -1,7 +1,7 @@
 const defaultState = {
     categories: [],
     activities: [],
-    currentUser: { id: 1, username: 'Mocha', name: 'Mokhtar', password: '1234', email: 'joemokhtarali@gmail.com', image: '' }
+    currentUser: { id: 1, username: 'Mocha', name: 'Mokhtar', password: '1234', email: 'joemokhtarali@gmail.com', image: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B' }
 }
 
 function reducer(state = defaultState, action) {

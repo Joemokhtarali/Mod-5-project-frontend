@@ -30,7 +30,7 @@ class Login extends React.Component {
                     alert(response.errors)
                 } else {
                     this.props.setUser(response)
-                    window.close()
+                    this.props.history.push('/home')
                 }
             })
         this.setState({ username: '', password: '' })

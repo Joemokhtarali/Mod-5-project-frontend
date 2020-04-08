@@ -24,7 +24,10 @@ class Signup extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
-        }).then(resp => resp.json()).then(response => {if(response.errors){alert(response.errors)}else{this.props.setUser(response)}})}
+        }).then(resp => resp.json()).then(response => {if(response.errors){alert(response.errors)}else{this.props.setUser(response)
+            this.props.history.push('/home')
+        }})
+    }
         
 
 

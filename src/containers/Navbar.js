@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Login from '../forms/login';
-import Signup from '../forms/signup';
+// import Login from '../forms/login';
+// import Signup from '../forms/signup';
 
 
 
@@ -11,7 +11,7 @@ class Navbar extends React.Component {
         return (
 
             <nav className="navbar navbar-expand-md navbar-light bg-light">
-                <a href="/" className="navbar-brand">
+                <a href="/home" className="navbar-brand">
                     <img src="/examples/images/logo.svg" height="28" alt="CoolBrand"></img>
                 </a>
                 <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -21,6 +21,7 @@ class Navbar extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav">
                         <Link to='/home'  ><button> Home </button>  </Link>
+                        <Link to='/myprofile'><button> Profile </button></Link>
                     </div>
                     
                     <div className="navbar-nav ml-auto">

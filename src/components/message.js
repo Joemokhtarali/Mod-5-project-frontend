@@ -1,17 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Message extends React.Component {
 
-    state = {
 
-    }
-
-    render() {
-        console.log(this.props.content);
-        
+    render() { 
         return (
             <div>
-               <p>this.props.message</p>
+               <img src={this.props.currentUser.image} height='30px'/>
+               <p>{this.props.message.content}</p>
             </div>
         )
     }

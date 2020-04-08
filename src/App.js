@@ -8,6 +8,7 @@ import Signup from './forms/signup';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './containers/home'
 import ActivityPage from './components/activityPage';
+import Profile from './components/profile';
 
 
 class App extends React.Component {
@@ -61,6 +62,7 @@ render() {
       <Route path='/login' render={()=><Login setUser={this.setUser}/>} />
       <Route path='/signup' component={Signup} />
       <Route path='/activities/:id' component={ActivityPage} />
+      <Route path='/myprofile' render={()=> <Profile currentUser={this.props.currentUser}/>} />
     </Router> 
   );
 }
@@ -69,7 +71,8 @@ render() {
 
 const msp = state => {
   return {
-    activities: state.activities
+    activities: state.activities,
+    currentUser: state.currentUser
   }
 }
 const mdp = dispatch => {
