@@ -34,9 +34,7 @@ class EditActivity extends React.Component {
         event.preventDefault()
         let data = { ...this.state, category_id: parseInt(this.state.category_id) }
         let id = this.props.activity.id
-
-        this.props.fetchPatchActivityCreator(id, data)
-            
+        this.props.fetchPatchActivityCreator(id, data) 
     }
 
 

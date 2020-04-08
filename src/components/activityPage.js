@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchDeleteActivityCreator } from '../actionCreators/actionCreater'
 import EditActivity from '../forms/editActivity'
 import { Link } from 'react-router-dom' 
+import Chatroom from './chatroom'
 
 class ActivityPage extends React.Component {
 
@@ -58,6 +59,8 @@ class ActivityPage extends React.Component {
                         <p><strong>About: </strong><br />{this.state.activity.about}</p>
                         {this.props.currentUser.id === this.state.host.id ? <div><button onClick={this.switchEditActivityState}>Edit Activity</button> <button onClick={this.deleteActivity}>Delete Activity</button></div> : null}
                         {this.state.editActivityState ? <div><EditActivity activity={this.state.activity} /> <button onClick={this.switchEditActivityState}>Close Form</button> </div> : null}
+                        <br/>
+                        <Chatroom />
 
                     </div>
                     : <h2>'Loading!!!'</h2>}
