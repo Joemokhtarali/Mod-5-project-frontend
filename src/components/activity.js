@@ -40,7 +40,7 @@ class Activity extends React.Component {
     render() {
         return (
             <div className='activity'>
-                <Link key={this.props.id}   to={`/activities/${this.props.activity.id}`}>{this.props.activity.name}</Link>
+                <Link to={`/activities/${this.props.activity.id}`}>{this.props.activity.name}</Link>
                 {/* <Link to=`/activities/${}`><p>{this.props.activity.name}</p></Link> */}
                 {/* <Chatroom /> */}
                 {this.props.currentUser.id === this.props.activity.user_id ? null : <button onClick={this.joinActivity} >Join Activity</button>}

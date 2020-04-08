@@ -64,7 +64,7 @@ render() {
       <Route exact path='/' component={Home} />
       <Route path='/login' render={()=><Login setUser={this.setUser}/>} />
       <Route path='/signup' component={Signup} />
-      <Route path='/activities/:id' render={()=> <ActivityPage/>} />
+      <Route path='/activities/:id' component={ActivityPage} />
     </Router> 
   );
 }
