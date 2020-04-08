@@ -4,7 +4,7 @@ import config from '../config'
  
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 var mykey = config.MY_KEY;
-var  = config.SECRET_KEY;
+var secretkey = config.SECRET_KEY;
 
 
 class Map extends Component {
