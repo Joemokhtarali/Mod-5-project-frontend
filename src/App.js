@@ -14,9 +14,6 @@ import ActivityPage from './components/activityPage';
 
 class App extends React.Component {
 
-  state = {
-    currentUser: null 
-  }
 
   componentDidMount() {
     this.props.fetchCategories()
@@ -59,19 +56,26 @@ logout = () => {
 }
 
 render() {
+  console.log('from App', this.props.activities);
+  
   return (
     <Router>
       <Navbar setUser={this.setUser} logout={this.logout} />
       <Route exact path='/' component={Home} />
       <Route path='/login' render={()=><Login setUser={this.setUser}/>} />
       <Route path='/signup' component={Signup} />
-      <Route path='/activities/:id' component={ActivityPage} />
+      <Route path='/activities/:id' render={()=> <ActivityPage/>} />
     </Router> 
   );
 }
 
 }
 
+const msp = state => {
+  return {
+    activities: state.activities
+  }
+}
 const mdp = dispatch => {
   return {
 
@@ -82,4 +86,4 @@ const mdp = dispatch => {
   }
 }
 
-export default connect(null, mdp)(App)
+export default connect(msp, mdp)(App)

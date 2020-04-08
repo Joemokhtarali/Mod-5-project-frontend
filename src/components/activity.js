@@ -3,20 +3,13 @@ import { connect } from 'react-redux'
 import Chatroom from './chatroom'
 import EditActivity from '../forms/editActivity'
 import { fetchDeleteActivityCreator } from '../actionCreators/actionCreater'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom' 
 
 class Activity extends React.Component {
 
-    componentDidMount() {
-        if (!this.props.activity.chatrooms) {
-            console.log(this.props.activity.chatrooms);
-        } else {
-            console.log(this.props.activity.chatrooms);
-        }
-    }
 
     state = {
-        editActivityState: false
+        editActivityState: false,
     }
 
     switchEditActivityState = () => {
@@ -45,10 +38,9 @@ class Activity extends React.Component {
 
 
     render() {
-
         return (
             <div className='activity'>
-                <Link key={this.props.id} to={`/activities/${this.props.activity.id}`}>{this.props.activity.name}</Link>
+                <Link key={this.props.id}   to={`/activities/${this.props.activity.id}`}>{this.props.activity.name}</Link>
                 {/* <Link to=`/activities/${}`><p>{this.props.activity.name}</p></Link> */}
                 {/* <Chatroom /> */}
                 {this.props.currentUser.id === this.props.activity.user_id ? null : <button onClick={this.joinActivity} >Join Activity</button>}
