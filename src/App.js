@@ -54,6 +54,7 @@ logout = () => {
 }
 
 render() {
+  
   return (
     <Router>
       <Navbar setUser={this.setUser} logout={this.logout} />

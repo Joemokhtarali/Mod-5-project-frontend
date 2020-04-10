@@ -5,6 +5,7 @@ import '../stylesheets/home.css'
 import HomeSlides from '../components/homeSlides'
 import { connect } from 'react-redux'
 
+console.log(process.env.REACT_APP_GOOGLE_API_KEY)
 
 class Home extends React.Component {
     state = {
