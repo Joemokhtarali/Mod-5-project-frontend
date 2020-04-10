@@ -21,10 +21,12 @@ class Navbar extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav">
                         <Link to='/home'  ><button> Home </button>  </Link>
-                        <Link to='/myprofile'><button> Profile </button></Link>
+                        <Link to='/activities'  ><button> All Activities </button>  </Link>
+
                     </div>
-                    
+
                     <div className="navbar-nav ml-auto">
+                        <Link to='/myprofile'><button> Profile </button></Link>
                         <Link to='/login'><button> Login </button>  </Link>
                         <Link to='/signup'><button>  Sign up </button> </Link>
                     </div>

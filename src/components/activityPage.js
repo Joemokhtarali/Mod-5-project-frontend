@@ -14,14 +14,16 @@ class ActivityPage extends React.Component {
         host: null,
         participants: [], // represnts the user from user_id of that join
         editActivityState: false,
-        users: []
+        users: [],
+        chatroom: null,
+        startChat: false
     }
 
 
     componentDidMount() {
         fetch(`http://localhost:3000/activities/${this.props.match.params.id}`)
             .then(resp => resp.json())
-            .then(data => this.setState({ activity: data, host: data.user, participants: data.participants, users: data.users }))
+            .then(data => this.setState({ activity: data, host: data.user, participants: data.participants, users: data.users, chatroom: data.chatroom}))
     }
 
 
@@ -57,6 +59,22 @@ class ActivityPage extends React.Component {
         return this.state.participants.map(p => <Link><image src={p.image} height='100px' alt='' /></Link>)
     }
 
+    startChatFunc = () => {
+        this.setState({startChat: !this.state.startChat})
+        fetch('http://localhost:3000/chatrooms', {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({activity_id: this.state.activity.id })
+        }).then(resp => resp.json())
+            .then(response => {
+                if (response.errors) { alert(response.errors) } else {
+                    this.setState({chatroom: response })
+                }
+            })
+    }
+
     render() {
         console.log('users', this.state.users);
         console.log('host', this.state.host);
@@ -78,7 +96,7 @@ class ActivityPage extends React.Component {
                         {this.state.editActivityState ? <div><EditActivity activity={this.state.activity} /> <button onClick={this.switchEditActivityState}>Close Form</button> </div> : null}
                         { this.props.currentUser.id === this.state.host.id || this.state.users.some(user => user.id === this.props.currentUser.id) ? null : <button onClick={this.joinActivity}>Join Activity</button>}
                         <br />
-                        <Chatroom currentUser={this.props.currentUser} />
+                        {this.state.chatroom ? <Chatroom chatroom={this.state.chatroom} currentUser={this.props.currentUser} /> : <button onClick={this.startChatFunc}>Start Chat</button>}
 
                         <h4>Map:</h4>
                         <div height='400' width='400'>

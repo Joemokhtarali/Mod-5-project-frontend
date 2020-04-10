@@ -33,7 +33,7 @@ class ActivitiesContainer extends React.Component {
         return (
             <div className='activity-container'>
                 {this.renderActivities()}
-                <button className='next-button' onClick={this.changeIndex} >Next</button>
+                <button className='next-button' color='inherit' onClick={this.changeIndex} >Next</button>
             </div>
         )
     }

@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './containers/home'
 import ActivityPage from './components/activityPage';
 import Profile from './components/profile';
+import ActivitiesPage from './containers/ActivitiesPage';
 
 
 class App extends React.Component {
@@ -63,6 +64,7 @@ render() {
       <Route path='/login' render={()=><Login setUser={this.setUser}/>} />
       <Route path='/signup' component={Signup} />
       <Route path='/activities/:id' component={ActivityPage} />
+      <Route exact path='/activities' component={ActivitiesPage} />
       <Route path='/myprofile' render={()=> <Profile currentUser={this.props.currentUser}/>} />
     </Router> 
   );

@@ -8,7 +8,7 @@ const Activity = (props) => {
     return (
         <div>
             <div className='activity' id={`activity-${index}`}>
-                <Link to={`/activities/${id}`}><img className='img' src={image} alt='name' /></Link>
+                <Link to={`/activities/${id}`}><img className='img' src={image} alt={name} /></Link>
             </div>
             <p className='info' style={{ textAlign: "center" }}>{name}
                 <br />

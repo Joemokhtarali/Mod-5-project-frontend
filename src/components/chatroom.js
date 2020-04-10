@@ -15,7 +15,7 @@ class Chatroom extends React.Component {
         // firstTime: true
     }
     componentDidMount(){
-        fetch('http://localhost:3000/chatrooms/1').then(resp => resp.json()).then(data => this.setState({ chatroom: data, messages: data.messages }))
+        fetch(`http://localhost:3000/chatrooms/${this.props.chatroom.id}`).then(resp => resp.json()).then(data => this.setState({ messages: data.messages }))
 
             // Creates the new websocket connection
             let socket = new WebSocket('ws://localhost:3000/cable');
@@ -74,7 +74,7 @@ class Chatroom extends React.Component {
 
     postMessage = (event) => {
         event.preventDefault()
-        let data = { content: this.state.message, chatroom_id: 1, user_id: 1 }
+        let data = { content: this.state.message, chatroom_id: this.props.chatroom.id, user_id: this.props.currentUser.id }
         console.log('message', data);
 
         fetch('http://localhost:3000/messages', {

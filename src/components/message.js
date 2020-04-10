@@ -8,6 +8,7 @@ class Message extends React.Component {
         return (
             <div>
                <img src={this.props.currentUser.image} height='30px'/>
+               <br />
                <p>{this.props.message.content}</p>
             </div>
         )
