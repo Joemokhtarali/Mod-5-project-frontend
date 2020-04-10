@@ -14,12 +14,16 @@ class ActivityPage extends React.Component {
         host: null,
         participants: [], // represnts the user from user_id of that join
         editActivityState: false,
+        users: []
     }
+
+
     componentDidMount() {
         fetch(`http://localhost:3000/activities/${this.props.match.params.id}`)
             .then(resp => resp.json())
-            .then(data => this.setState({ activity: data, host: data.user, participants: data.participants}))
+            .then(data => this.setState({ activity: data, host: data.user, participants: data.participants, users: data.users }))
     }
+
 
     switchEditActivityState = () => {
         this.setState({
@@ -28,17 +32,19 @@ class ActivityPage extends React.Component {
     }
 
     joinActivity = () => {
-        let data = { user_id: this.props.currentUser, activity_id: this.props.activity.id }
+        // debugger
         fetch('http://localhost:3000/participants', {
             method: 'Post',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ user_id: this.props.currentUser.id, activity_id: this.state.activity.id })
         }).then(resp => resp.json())
-            .then(response => { if (response.errors) { alert(response.errors) }else {
-                this.setState({participants: [...this.state.participants, this.props.currentUser]})   
-            } })
+            .then(response => {
+                if (response.errors) { alert(response.errors) } else {
+                    this.setState({ users: [...this.state.users, this.props.currentUser] })
+                }
+            })
     }
 
     deleteActivity = () => {
@@ -48,27 +54,31 @@ class ActivityPage extends React.Component {
     }
 
     renderParticipants = () => {
-        return this.state.participants.map(p => <Link><image src={p.image} height='100px' alt=''/></Link>)
+        return this.state.participants.map(p => <Link><image src={p.image} height='100px' alt='' /></Link>)
     }
 
     render() {
-        console.log('participants', this.state.participants);
+        console.log('users', this.state.users);
+        console.log('host', this.state.host);
         return (
+            
             <div>
                 {this.state.activity && this.state.host ?
                     <div>
                         <h3>{this.state.activity.name}</h3>
                         <h5>Happening on:{this.state.activity.date}</h5>
                         <h4>Created By: {this.state.host.name}</h4>
-                        {/* <img src={this.state.host.image} alt='image'></img> */}
-
                         <img src={this.state.activity.image} height='400px'></img>
                         <h6>Address:{this.state.activity.address}</h6>
                         <p><strong>About: </strong><br />{this.state.activity.about}</p>
-                        {this.props.currentUser.id === this.state.host.id ? <div><button onClick={this.switchEditActivityState}>Edit Activity</button> <button onClick={this.deleteActivity}>Delete Activity</button></div> : null}
+
+                        {this.props.currentUser.id === this.state.host.id ?
+                            <div><button onClick={this.switchEditActivityState}>Edit Activity</button> <button onClick={this.deleteActivity}>Delete Activity</button></div> : null
+                        }
                         {this.state.editActivityState ? <div><EditActivity activity={this.state.activity} /> <button onClick={this.switchEditActivityState}>Close Form</button> </div> : null}
+                        { this.props.currentUser.id === this.state.host.id || this.state.users.some(user => user.id === this.props.currentUser.id) ? null : <button onClick={this.joinActivity}>Join Activity</button>}
                         <br />
-                        <Chatroom currentUser={this.props.currentUser}/>
+                        <Chatroom currentUser={this.props.currentUser} />
 
                         <h4>Map:</h4>
                         <div height='400' width='400'>

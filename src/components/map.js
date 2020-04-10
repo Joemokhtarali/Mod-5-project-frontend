@@ -13,12 +13,15 @@ class Map extends Component {
     },
     zoom: 11
   };
+
  
   render() {
+    
     return (
       <div style={{ height: '30vh', width: '40%' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: '' }}
+          bootstrapURLKeys={{ key:''}}
+
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
