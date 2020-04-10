@@ -12,13 +12,13 @@ class ActivityPage extends React.Component {
     state = {
         activity: null,
         host: null,
-        participants: [],
+        participants: [], // represnts the user from user_id of that join
         editActivityState: false,
     }
     componentDidMount() {
         fetch(`http://localhost:3000/activities/${this.props.match.params.id}`)
             .then(resp => resp.json())
-            .then(data => this.setState({ activity: data, host: data.user, participants: data.participants }))
+            .then(data => this.setState({ activity: data, host: data.user, participants: data.participants}))
     }
 
     switchEditActivityState = () => {
@@ -36,7 +36,9 @@ class ActivityPage extends React.Component {
             },
             body: JSON.stringify(data)
         }).then(resp => resp.json())
-            .then(response => { if (response.errors) { alert(response.errors) } })
+            .then(response => { if (response.errors) { alert(response.errors) }else {
+                this.setState({participants: [...this.state.participants, this.props.currentUser]})   
+            } })
     }
 
     deleteActivity = () => {
@@ -45,8 +47,12 @@ class ActivityPage extends React.Component {
         this.props.history.push('/home')
     }
 
+    renderParticipants = () => {
+        return this.state.participants.map(p => <Link><image src={p.image} height='100px' alt=''/></Link>)
+    }
+
     render() {
-        // console.log();
+        console.log('participants', this.state.participants);
         return (
             <div>
                 {this.state.activity && this.state.host ?

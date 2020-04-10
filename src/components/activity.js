@@ -1,19 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom' 
+import { Link } from 'react-router-dom'
 import '../../src/index.css'
 
-class Activity extends React.Component {
+const Activity = (props) => { 
 
-
-    render() {
-        return (
-            <div className='activity'>
-                <img src={this.props.activity.image} height='250px' alt='image'></img>
-                <br/>
-                <Link to={`/activities/${this.props.activity.id}`}>{this.props.activity.name}</Link>
+    const { name, image, id, address, index ,date} = props.activity
+    return (
+        <div>
+            <div className='activity' id={`activity-${index}`}>
+                <Link to={`/activities/${id}`}><img className='img' src={image} alt='name' /></Link>
             </div>
-        )
-    }
+            <p className='info' style={{ textAlign: "center" }}>{name}
+                <br />
+                {date}
+            </p>
+        </div>
+    )
 }
+
 
 export default Activity

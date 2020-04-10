@@ -58,7 +58,7 @@ render() {
     <Router>
       <Navbar setUser={this.setUser} logout={this.logout} />
       <Route exact path='/Home' component={Home} />
-      {/* <Route exact path='/' component={Welcome} /> */}
+      {/* <Route exact path='/' component={Main} /> */}
       <Route path='/login' render={()=><Login setUser={this.setUser}/>} />
       <Route path='/signup' component={Signup} />
       <Route path='/activities/:id' component={ActivityPage} />

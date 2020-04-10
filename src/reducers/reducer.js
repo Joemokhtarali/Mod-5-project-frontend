@@ -12,8 +12,9 @@ function reducer(state = defaultState, action) {
                 ...state, categories: action.payload.categories
             }
         case 'FETCH_ACTIVITIES':
+            let sortedActivities = action.payload.activities.slice().sort((a, b) => b.date - a.date)
             return {
-                ...state, activities: action.payload.activities
+                ...state, activities: sortedActivities
             }
         case 'ADD_CATEGORY':
             return {

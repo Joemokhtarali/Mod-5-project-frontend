@@ -1,18 +1,42 @@
 import React from 'react'
-import Activity from '../components/activity'
+import Activity from '../components/activity' 
 import '../../src/index.css'
 
- 
-const ActivitiesContainer = (props) => {
-    function renderActivities() {
-        return props.activities.map(activitiy => <Activity activity={activitiy} key={activitiy.id}/>)
+
+class ActivitiesContainer extends React.Component {
+
+    state = {
+        startIdx: 0
     }
-    
-    return (
-        <div className='belt'>            
-            {renderActivities()}
-        </div>
-    ) 
+   
+
+    changeIndex = () => {
+        let newIndex = this.state.startIdx + 5;
+        if (newIndex > this.props.activities.length - 1) {
+            newIndex = 0
+        }
+        this.setState({
+            startIdx: newIndex
+        })
+    }
+
+
+    renderActivities() {
+        let { startIdx } = this.state
+        let fiveActivities = this.props.activities.slice(startIdx, startIdx + 5)
+        return fiveActivities.map((activitiy, index) => <Activity activity={activitiy} key={activitiy.id} index={index} />)
+    }
+
+    render() {
+
+
+        return (
+            <div className='activity-container'>
+                {this.renderActivities()}
+                <button className='next-button' onClick={this.changeIndex} >Next</button>
+            </div>
+        )
+    }
 }
 
 
