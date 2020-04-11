@@ -16,7 +16,7 @@ class Map extends Component {
 
  
   render() {
-    
+     
     return (
       <div style={{ height: '30vh', width: '40%' }}>
         <GoogleMapReact
