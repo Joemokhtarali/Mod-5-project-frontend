@@ -7,10 +7,12 @@ import Chatroom from './chatroom'
 import Map from './map'
 
 
+
 class ActivityPage extends React.Component {
 
     state = {
         activity: null,
+        location: {},
         host: null,
         participants: [], // represnts the user from user_id of that join
         editActivityState: false,
@@ -23,7 +25,7 @@ class ActivityPage extends React.Component {
     componentDidMount() {
         fetch(`http://localhost:3000/activities/${this.props.match.params.id}`)
             .then(resp => resp.json())
-            .then(data => this.setState({ activity: data, host: data.user, participants: data.participants, users: data.users, chatroom: data.chatroom}))
+            .then(data => this.setState({ activity: data, host: data.user, participants: data.participants, users: data.users, chatroom: data.chatroom }))
     }
 
 
@@ -60,26 +62,26 @@ class ActivityPage extends React.Component {
     }
 
     startChatFunc = () => {
-        this.setState({startChat: !this.state.startChat})
+        this.setState({ startChat: !this.state.startChat })
         fetch('http://localhost:3000/chatrooms', {
             method: 'Post',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({activity_id: this.state.activity.id })
+            body: JSON.stringify({ activity_id: this.state.activity.id })
         }).then(resp => resp.json())
             .then(response => {
                 if (response.errors) { alert(response.errors) } else {
-                    this.setState({chatroom: response })
+                    this.setState({ chatroom: response })
                 }
             })
     }
 
+
     render() {
-        console.log('users', this.state.users);
-        console.log('host', this.state.host);
+        // console.log('location', this.state.activity.address);
         return (
-            
+
             <div>
                 {this.state.activity && this.state.host ?
                     <div>
@@ -94,13 +96,12 @@ class ActivityPage extends React.Component {
                             <div><button onClick={this.switchEditActivityState}>Edit Activity</button> <button onClick={this.deleteActivity}>Delete Activity</button></div> : null
                         }
                         {this.state.editActivityState ? <div><EditActivity activity={this.state.activity} /> <button onClick={this.switchEditActivityState}>Close Form</button> </div> : null}
-                        { this.props.currentUser.id === this.state.host.id || this.state.users.some(user => user.id === this.props.currentUser.id) ? null : <button onClick={this.joinActivity}>Join Activity</button>}
+                        {this.props.currentUser.id === this.state.host.id || this.state.users.some(user => user.id === this.props.currentUser.id) ? null : <button onClick={this.joinActivity}>Join Activity</button>}
                         <br />
                         {this.state.chatroom ? <Chatroom chatroom={this.state.chatroom} currentUser={this.props.currentUser} /> : <button onClick={this.startChatFunc}>Start Chat</button>}
 
-                        <h4>Map:</h4>
                         <div height='400' width='400'>
-                            <Map />
+                            <Map activity={this.state.activity} />
                         </div>
                     </div>
                     : <h2>'Loading!!!'</h2>

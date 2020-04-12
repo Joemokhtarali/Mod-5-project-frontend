@@ -1,7 +1,7 @@
 import React from 'react'
 import Activity from '../components/activity' 
 import '../../src/index.css'
-
+ 
 
 class ActivitiesContainer extends React.Component {
 

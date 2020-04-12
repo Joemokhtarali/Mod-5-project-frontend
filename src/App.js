@@ -7,9 +7,11 @@ import Login from './forms/login';
 import Signup from './forms/signup';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './containers/home'
-import ActivityPage from './components/activityPage';
 import Profile from './components/profile';
 import ActivitiesPage from './containers/ActivitiesPage';
+import MainPage from './containers/mainPage'
+import ActivityPage from './components/activityPage';
+
 
 
 class App extends React.Component {
@@ -60,7 +62,7 @@ render() {
     <Router>
       <Navbar setUser={this.setUser} logout={this.logout} />
       <Route exact path='/Home' component={Home} />
-      {/* <Route exact path='/' component={Main} /> */}
+      <Route exact path='/' component={MainPage} />
       <Route path='/login' render={()=><Login setUser={this.setUser}/>} />
       <Route path='/signup' component={Signup} />
       <Route path='/activities/:id' component={ActivityPage} />

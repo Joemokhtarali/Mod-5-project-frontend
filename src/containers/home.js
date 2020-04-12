@@ -1,7 +1,7 @@
 import React from 'react'
 import CateogriesContainer from './categoriesContainer'
 import AddActivity from '../forms/addActivity'
-import '../stylesheets/home.css'
+import '../../src/index.css'
 import HomeSlides from '../components/homeSlides'
 import { connect } from 'react-redux'
 
@@ -25,7 +25,7 @@ class Home extends React.Component {
                 {/* <HomeSlides categories={this.props.categories} /> */}
                 <h4>Browse By Category</h4>
                 <br />
-                <CateogriesContainer /> 
+                <CateogriesContainer />  
                 {this.state.addActivity ? <div><AddActivity /> <button onClick={this.switchAddActivityState}>Close Form</button></div> : <button onClick={this.switchAddActivityState}>Add Activity</button>}
             </div>
         )

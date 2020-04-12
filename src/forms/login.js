@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../src/index.css'
 
 class Login extends React.Component {
 
@@ -41,15 +42,15 @@ class Login extends React.Component {
     render() {
 
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label >Username:</label>
-                    <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input><br></br>
-                    <label >Password:</label>
-                    <input onChange={this.handleChange} type="password" name="password" value={this.state.password}></input><br></br>
-                    <button>Login</button>
-                </form>
-            </div>
+            <div className='login-form'>
+                <div className='wrapper'>
+                    <form onSubmit={this.handleSubmit}>
+                        <input onChange={this.handleChange} placeholder='Username' type="text" name="username" value={this.state.username} /><br />
+                        <input onChange={this.handleChange} placeholder='Passowrd' type="password" name="password" value={this.state.password} /><br />
+                        <button>Login</button>
+                    </form>
+                </div>
+            </div >
         )
     }
 }

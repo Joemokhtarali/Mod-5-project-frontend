@@ -2,7 +2,7 @@ import React from 'react'
 import Category from '../components/category'
 import { connect } from 'react-redux'
 
-class CateogriesContainer extends React.Component {
+class CateogriesContainer extends React.Component { 
 
  
 

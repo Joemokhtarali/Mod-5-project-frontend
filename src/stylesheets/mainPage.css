@@ -1,0 +1,10 @@
+.main-page {
+    margin: auto;
+    background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80');
+    background-repeat: no-repeat;
+    background-size: 100vh fixed;
+    margin-bottom: 10px; 
+    background-size: cover;
+    height: 100vh;
+    justify-content: center;
+}

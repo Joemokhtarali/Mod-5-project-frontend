@@ -1,6 +1,9 @@
 import React from 'react'
 import AddActivity from '../forms/addActivity';
-import Activity from './activity';
+import '../stylesheets/profile.css'
+import 'typeface-roboto';
+
+
 
 
 class Profile extends React.Component {
@@ -31,12 +34,14 @@ class Profile extends React.Component {
         console.log(this.props.activities);
         
         return (
-            <div>
-                <h2>{this.props.currentUser.name}</h2>
-                <img src={this.props.currentUser.image} height='200px'/>
-                <br/>
-                {this.state.addActivityState ? <div><AddActivity /> <br/> <button onClick={this.addActivityStateSwitch}>Close Form</button></div>: <button onClick={this.addActivityStateSwitch}>AddActivity</button>}
-                <br/><h3>My Activities: </h3>
+            <div className='profile'>
+                <img src={this.props.currentUser.image} className='profile_image'  alt={this.props.currentUser.name}/>
+                <div className='profile_name'>{this.props.currentUser.name}</div>
+                <div className='profile_username'>{this.props.currentUser.username}</div>
+                <div className='profile_details'>{this.props.currentUser.city}</div>
+                <AddActivity />
+                
+                {/* {this.state.addActivityState ? <div><AddActivity /> <br/> <button onClick={this.addActivityStateSwitch}>Close Form</button></div>: <button onClick={this.addActivityStateSwitch}>AddActivity</button>} */}
                 {/* {this.renderMyActivities()} */}
                 {/* <EditProfile /> */}
             </div>

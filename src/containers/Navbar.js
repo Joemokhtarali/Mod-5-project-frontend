@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom'
 
 
 
+
 class Navbar extends React.Component {
 
     render() {
         return (
-
-            <nav className="navbar navbar-expand-md navbar-light bg-light">
+            <div className='mynavbar'>
+            <nav className="navbar navbar-expand-md navbar-light bg-">
                 <a href="/home" className="navbar-brand">
                     <img src="/examples/images/logo.svg" height="28" alt="CoolBrand"></img>
                 </a>
@@ -31,7 +32,9 @@ class Navbar extends React.Component {
                         <Link to='/signup'><button>  Sign up </button> </Link>
                     </div>
                 </div>
+
             </nav>
+            </div>
 
         )
     }

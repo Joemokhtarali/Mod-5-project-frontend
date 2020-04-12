@@ -2,7 +2,7 @@ import React from 'react'
 import ActivitiesContainer from '../containers/ActivitiesContainer'
 
 
-class Category extends React.Component { 
+class Category extends React.Component {  
 
     render() {
         return (

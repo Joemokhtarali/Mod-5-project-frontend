@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../src/index.css'
 
 class Signup extends React.Component {
 
@@ -10,43 +11,44 @@ class Signup extends React.Component {
         email: '',
         image: ''
     }
-    
+
     handleChange = event => {
-        this.setState({[event.target.name]: event.target.value})
+        this.setState({ [event.target.name]: event.target.value })
     }
 
     handleSubmit = event => {
         event.preventDefault()
-        
+
         fetch('http://localhost:3000/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
-        }).then(resp => resp.json()).then(response => {if(response.errors){alert(response.errors)}else{this.props.setUser(response)
-            this.props.history.push('/home')
-        }})
+        }).then(resp => resp.json()).then(response => {
+            if (response.errors) { alert(response.errors) } else {
+                this.props.setUser(response)
+                this.props.history.push('/home')
+            }
+        })
     }
-        
 
 
-    render() {        
+
+    render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label >Name:</label>
-                    <input onChange={this.handleChange} type="text" name="name" value={this.state.name}></input><br></br>
-                    <label >Username:</label>
-                    <input onChange={this.handleChange} type="text" name="username" value={this.state.username}></input><br></br>
-                    <label >Password:</label>
-                    <input onChange={this.handleChange} type="password" name="password" value={this.state.password}></input><br></br>
-                    <label >Email:</label>
-                    <input onChange={this.handleChange} type="text" name="email" value={this.state.email}></input><br></br>
-                    <label >Image:</label>
-                    <input onChange={this.handleChange} type="text" name="image" value={this.state.image}></input><br></br>
-                    <button>Signup</button>
-                </form>
+            <div className='form-box'>
+                <div className='wrapper'>
+                    <form onSubmit={this.handleSubmit}>
+                        <input onChange={this.handleChange} placeholder='Name' type="text" name="name" value={this.state.name}></input><br />
+                        <input onChange={this.handleChange} placeholder='Username' type="text" name="username" value={this.state.username}></input><br />
+                        <input onChange={this.handleChange} placeholder='City' type="text" name="username" value={this.state.username}></input><br />
+                        <input onChange={this.handleChange} placeholder='Password' type="password" name="password" value={this.state.password}></input><br />
+                        <input onChange={this.handleChange} placeholder='Email' type="text" name="email" value={this.state.email}></input><br />
+                        <input onChange={this.handleChange} placeholder='Image' type="text" name="image" value={this.state.image}></input><br />
+                        <button style={{margin:'4px'}}>Signup</button>
+                    </form>
+                </div>
             </div>
         )
     }
