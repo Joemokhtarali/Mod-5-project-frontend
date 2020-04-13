@@ -1,76 +1,75 @@
 import React from 'react'
 import Message from './message'
 import { Button, Input } from '@material-ui/core';
-// import { Paper } from '@material-ui/core'
-// import { makeStyles } from '@material-ui/core/styles';
+
 
 
 
 
 class Chatroom extends React.Component {
 
-    state = {
-        message: '',
-        messages: [],
-        // firstTime: true
-    }
-    componentDidMount(){
-        fetch(`http://localhost:3000/chatrooms/${this.props.chatroom.id}`).then(resp => resp.json()).then(data => this.setState({ messages: data.messages }))
+    // state = {
+    //     message: '',
+    //     messages: [],
+    //     // firstTime: true
+    // }
+    // componentDidMount(){
+    //     fetch(`http://localhost:3000/chatrooms/${this.props.chatroom.id}`).then(resp => resp.json()).then(data => this.setState({ messages: data.messages }))
 
-            // Creates the new websocket connection
-            let socket = new WebSocket('ws://localhost:3000/cable');
+    //         // Creates the new websocket connection
+    //         let socket = new WebSocket('ws://localhost:3000/cable');
     
-            // When the connection is 1st created, this code runs subscribing the clien to a specific chatroom stream in the ChatRoomChannel
-            socket.onopen = function (event) {
-                console.log('WebSocket is connected.');
+    //         // When the connection is 1st created, this code runs subscribing the clien to a specific chatroom stream in the ChatRoomChannel
+    //         socket.onopen = function (event) {
+    //             console.log('WebSocket is connected.');
     
-                const msg = {
-                    command: 'subscribe',
-                    identifier: JSON.stringify({
-                        id: 1,
-                        channel: 'ChatroomChannel'
-                    }),
-                };
+    //             const msg = {
+    //                 command: 'subscribe',
+    //                 identifier: JSON.stringify({
+    //                     id: 1,
+    //                     channel: 'ChatroomChannel'
+    //                 }),
+    //             };
     
-                socket.send(JSON.stringify(msg));
-            };
+    //             socket.send(JSON.stringify(msg));
+    //         };
     
-            // When the connection is closed, this code is run
-            socket.onclose = function (event) {
-                console.log('WebSocket is closed.');
-            };
+    //         // When the connection is closed, this code is run
+    //         socket.onclose = function (event) {
+    //             console.log('WebSocket is closed.');
+    //         };
     
-            // When a message is received through the websocket, this code is run
-            socket.onmessage = function (event) {
-                const response = event.data;
-                const msg = JSON.parse(response);
+    //         // When a message is received through the websocket, this code is run
+    //         socket.onmessage = function (event) {
+    //             const response = event.data;
+    //             const msg = JSON.parse(response);
     
-                // Ignores pings
-                if (msg.type === "ping") {
-                    return;
-                }
+    //             // Ignores pings
+    //             if (msg.type === "ping") {
+    //                 return;
+    //             }
     
-                console.log("FROM RAILS: ", msg);
+    //             console.log("FROM RAILS: ", msg);
     
-                // Renders any newly created messages onto the page
-                if (msg.message) {
+    //             // Renders any newly created messages onto the page
+    //             if (msg.message) {
                    
-                }
+    //             }
     
-            };
+    //         };
     
-            // When an error occurs through the websocket connection, this code is run printing the error message
-            socket.onerror = function (error) {
-                console.log('WebSocket Error: ' + error);
-            };
-        }
+    //         // When an error occurs through the websocket connection, this code is run printing the error message
+    //         socket.onerror = function (error) {
+    //             console.log('WebSocket Error: ' + error);
+    //         };
+        // }
     
     // }
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
+    // handleChange = (event) => {
+    //     this.setState({
+    //         [event.target.name]: event.target.value
+    //     })
+    // }
 
     postMessage = (event) => {
         event.preventDefault()

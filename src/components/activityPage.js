@@ -5,6 +5,7 @@ import EditActivity from '../forms/editActivity'
 import { Link } from 'react-router-dom'
 import Chatroom from './chatroom'
 import Map from './map'
+import ChatRoomT from './chatRoomTest'
 
 
 
@@ -98,7 +99,7 @@ class ActivityPage extends React.Component {
                         {this.state.editActivityState ? <div><EditActivity activity={this.state.activity} /> <button onClick={this.switchEditActivityState}>Close Form</button> </div> : null}
                         {this.props.currentUser.id === this.state.host.id || this.state.users.some(user => user.id === this.props.currentUser.id) ? null : <button onClick={this.joinActivity}>Join Activity</button>}
                         <br />
-                        {this.state.chatroom ? <Chatroom chatroom={this.state.chatroom} currentUser={this.props.currentUser} /> : <button onClick={this.startChatFunc}>Start Chat</button>}
+                        {this.state.chatroom ? <ChatRoomT chatroom={this.state.chatroom} currentUser={this.props.currentUser} /> : <button onClick={this.startChatFunc}>Start Chat</button>}
 
                         <div height='400' width='400'>
                             <Map activity={this.state.activity} />
