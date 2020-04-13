@@ -3,19 +3,18 @@ import './App.css';
 import { connect } from 'react-redux'
 import { fetchCateogriesCreator, fetchActivitiesCreator, assignCurrentUser, removeCurrentUser } from './actionCreators/actionCreater'
 import Navbar from '../src/containers/Navbar'
-import Login from './forms/login';
-import Signup from './forms/signup';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './containers/home'
 import Profile from './components/profile';
 import ActivitiesPage from './containers/ActivitiesPage';
 import MainPage from './containers/mainPage'
 import ActivityPage from './components/activityPage';
+import AllActivities from './containers/allActivities';
+import activityPage from './components/activityPage';
 
 
 
 class App extends React.Component {
-
   componentDidMount() {
     this.props.fetchCategories()
     this.props.fetchActivities()
@@ -63,8 +62,6 @@ render() {
       <Navbar setUser={this.setUser} logout={this.logout} />
       <Route exact path='/Home' component={Home} />
       <Route exact path='/' component={MainPage} />
-      <Route path='/login' render={()=><Login setUser={this.setUser}/>} />
-      <Route path='/signup' component={Signup} />
       <Route path='/activities/:id' component={ActivityPage} />
       <Route exact path='/activities' component={ActivitiesPage} />
       <Route path='/myprofile' render={()=> <Profile currentUser={this.props.currentUser}/>} />

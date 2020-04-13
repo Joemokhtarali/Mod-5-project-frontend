@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import Activity from '../components/activity'
 
 class AllActivities extends React.Component {
 
@@ -9,6 +7,8 @@ class AllActivities extends React.Component {
     // }
 
     render() { 
+        // console.log(this.props);
+        
         return (
             <div>
                {this.props.renderActivtites()}

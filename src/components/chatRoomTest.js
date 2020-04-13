@@ -3,12 +3,11 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Chip from '@material-ui/core/Chip';
-// import FaceIcon from '@material-ui/icons/Face';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Avatar from '@material-ui/core/Avatar';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: '300px',
         padding: '20px',
+        overflow: 'auto'
 
     },
     chatbox: {
@@ -31,6 +31,12 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         width: '15%'
+    },
+    avatars: {
+        display: 'flex',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
     },
 }));
 
@@ -108,7 +114,7 @@ export default function ChatRoomT(props) {
     const { chatroom, messages } = userRequest;
 
     const postMessage = (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         let data = { content: textValue, chatroom_id: chatroom.id, user_id: props.currentUser.id, user_name: props.currentUser.username }
 
         fetch('http://localhost:3000/messages', {
@@ -118,11 +124,13 @@ export default function ChatRoomT(props) {
                 'Accept': 'application/json'
             },
             body: JSON.stringify(data)
-        })//.then(response => response.json())
-            .then(response => {
-                setUserRequest({ chatroom: {...chatroom}, messages: [...messages, JSON.stringify(response)] })
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                setUserRequest({ messages: [...messages, data] })
             }).then(() => cleanScreen())
     }
+
 
     function cleanScreen() {
         changeTextValue('')
@@ -137,7 +145,29 @@ export default function ChatRoomT(props) {
         ))
     }
 
-    console.log(messages[0]);
+    function keyPressed(event) {
+        if (event.key === "Enter") {
+            postMessage()
+        }
+    }
+    // const messagesEndRef = React.createRef()
+    // function scrollToBottom() {
+    //     messagesEndRef.scrollIntoView({ behavior: "smooth" })
+    //   }
+
+    //   componentDidMount() {
+    //     scrollToBottom();
+    //   }
+
+    //   componentDidUpdate() {
+    //     scrollToBottom();
+    //   }
+
+    // console.log(messages[0]);
+
+    function renderParticipants() {
+        return props.participants.map(p => <Avatar alt={p.name} src={p.image} onClick={() => { }} />)
+    }
 
     return (
         <div>
@@ -152,6 +182,9 @@ export default function ChatRoomT(props) {
                             {renderMessages()}
                         </List>
                     </div>
+                    {/* <div style={{ float: "left", clear: "both" }}
+                        ref={(el) => { messagesEndRef = el; }}>
+                    </div> */}
                 </div>
 
                 <div className={classes.flex}>
@@ -161,6 +194,7 @@ export default function ChatRoomT(props) {
                         className={classes.chatbox}
                         value={textValue}
                         onChange={e => changeTextValue(e.target.value)}
+                        onKeyPress={keyPressed}
                     // multiline
                     // rowsMax={4}
                     />
@@ -169,6 +203,17 @@ export default function ChatRoomT(props) {
                     </Button>
                 </div>
 
+            </Paper>
+
+            <Paper className={classes.root}>
+                <Typography variant='h4' component='h4'>
+                    Participants
+                </Typography>
+                <div className={classes.avatars}>
+                <Avatar alt={props.currentUser.name} src={props.currentUser.image} />
+                        {renderParticipants()}
+
+                </div>
             </Paper>
         </div>
     )

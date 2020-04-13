@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import Marker from './marker.js'
+// import Marker from 'google-map-react'
 
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -11,16 +13,8 @@ class Map extends Component {
   state = {
     lat: null,
     lng: null,
-    zoom: 12
+    zoom: 13,
   }
-
-  // static defaultProps = {
-  //   center: {
-  //     lat: 0,
-  //     lng: 0
-  //   },
-  //   zoom: 11
-  // };
 
   componentDidMount() {
     fetch(`https://maps.googleapis.com/maps/api/geocode/json?address='${this.props.activity.address}'&key=`)
@@ -32,27 +26,25 @@ class Map extends Component {
 
 
   render() {
-    
+
     return (
       <div style={{ height: '30vh', width: '50%' }}>
-        {this.state.lat ? 
-        <GoogleMapReact
-        bootstrapURLKeys={{ key: '' }}
+        {this.state.lat ?
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: '' }}
+            defaultCenter={{ lat: this.state.lat, lng: this.state.lng }}
+            defaultZoom={this.state.zoom}
+          >
+            <Marker
+              lat={this.state.lat}
+              lng={this.state.lng}
+              name={this.props.activity.name}
+              color='blue'
+              onClick={this.onMarkerClick}
+            />
+          </GoogleMapReact>
+          : null}
 
-        defaultCenter={{lat:this.state.lat, lng: this.state.lng}}
-        defaultZoom={this.state.zoom}
-      >
-        {this.state.lat ? 
-         <AnyReactComponent
-         lat={this.state.lat}
-         lng={this.state.lng}
-         text={this.props.activity.name}
-       /> :
-       null}
-       
-      </GoogleMapReact>
-      : null} 
-        
       </div>
     );
   }

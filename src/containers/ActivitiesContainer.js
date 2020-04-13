@@ -11,7 +11,7 @@ class ActivitiesContainer extends React.Component {
    
 
     changeIndex = () => {
-        let newIndex = this.state.startIdx + 5;
+        let newIndex = this.state.startIdx + 4;
         if (newIndex > this.props.activities.length - 1) {
             newIndex = 0
         }
@@ -23,11 +23,12 @@ class ActivitiesContainer extends React.Component {
 
     renderActivities() {
         let { startIdx } = this.state
-        let fiveActivities = this.props.activities.slice(startIdx, startIdx + 5)
-        return fiveActivities.map((activitiy, index) => <Activity activity={activitiy} key={activitiy.id} index={index} />)
+        let fiveActivities = this.props.activities.slice(startIdx, startIdx + 4)
+        return fiveActivities.map((activitiy, index) => <Activity history={this.props.history} activity={activitiy} key={activitiy.id} index={index} />)
     }
 
     render() {
+// console.log('activities cont' ,this.props.history);
 
 
         return (
@@ -40,4 +41,4 @@ class ActivitiesContainer extends React.Component {
 }
 
 
-export default ActivitiesContainer
+export default ActivitiesContainer 

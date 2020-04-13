@@ -28,8 +28,6 @@ class Navbar extends React.Component {
 
                     <div className="navbar-nav ml-auto">
                         <Link to='/myprofile'><button> Profile </button></Link>
-                        <Link to='/login'><button> Login </button>  </Link>
-                        <Link to='/signup'><button>  Sign up </button> </Link>
                     </div>
                 </div>
 

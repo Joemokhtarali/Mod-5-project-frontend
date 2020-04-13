@@ -1,5 +1,5 @@
 import React from 'react'
-import Message from './message'
+// import Message from './message'
 import { Button, Input } from '@material-ui/core';
 
 
@@ -90,7 +90,7 @@ class Chatroom extends React.Component {
     }   
 
     renderMessages = () => {
-        return this.state.messages.map(m => <Message key={m.id} currentUser={this.props.currentUser} message={m} />)
+        // return this.state.messages.map(m => <Message key={m.id} currentUser={this.props.currentUser} message={m} />)
     }
 
     
