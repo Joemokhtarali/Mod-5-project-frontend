@@ -1,6 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../src/index.css'
+import { assignCurrentUser } from '../actionCreators/actionCreater'
+import { connect } from 'react-redux'
 
 class Signup extends React.Component {
 
@@ -19,7 +21,6 @@ class Signup extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-
         fetch('http://localhost:3000/signup', {
             method: 'POST',
             headers: {
@@ -28,8 +29,9 @@ class Signup extends React.Component {
             body: JSON.stringify(this.state)
         }).then(resp => resp.json()).then(response => {
             if (response.errors) { alert(response.errors) } else {
-                this.props.setUser(response)
+                this.props.assignCurrentUser(response)
                 this.props.history.push('/home')
+                localStorage.user_id = response.id
             }
         })
     }
@@ -47,7 +49,7 @@ class Signup extends React.Component {
                         <input onChange={this.handleChange} placeholder='Password' type="password" name="password" value={this.state.password}></input><br />
                         <input onChange={this.handleChange} placeholder='Email' type="text" name="email" value={this.state.email}></input><br />
                         <input onChange={this.handleChange} placeholder='Image' type="text" name="image" value={this.state.image}></input><br />
-                        <button style={{margin:'4px'}}>Signup</button>
+                        <button style={{ margin: '4px' }}>Signup</button>
                     </form>
                 </div>
             </div>
@@ -55,6 +57,6 @@ class Signup extends React.Component {
     }
 }
 
-export default Signup
+export default connect(null, { assignCurrentUser })(Signup)
 
 

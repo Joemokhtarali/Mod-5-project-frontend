@@ -1,6 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../src/index.css'
+import { assignCurrentUser } from '../actionCreators/actionCreater'
+import { connect } from 'react-redux'
 
 class Login extends React.Component {
 
@@ -30,14 +32,13 @@ class Login extends React.Component {
                 if (response.errors) {
                     alert(response.errors)
                 } else {
-                    this.props.setUser(response)
+                    this.props.assignCurrentUser(response)
                     this.props.history.push('/home')
+                    localStorage.user_id = response.id
                 }
             })
         this.setState({ username: '', password: '' })
     }
-
-
 
     render() {
 
@@ -55,6 +56,6 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+export default connect(null, { assignCurrentUser })(Login)
 
 

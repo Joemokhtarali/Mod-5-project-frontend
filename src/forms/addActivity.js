@@ -13,9 +13,7 @@ class AddActivity extends React.Component {
         image: '',
         about: '',
         date: new Date(),
-        rating: 5,
-        user_id: 1,
-        category_id: 1,
+        category_id: null,
         address: ''
     }
 
@@ -33,7 +31,7 @@ class AddActivity extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        let data = { ...this.state, category_id: parseInt(this.state.category_id) }
+        let data = { ...this.state, category_id: parseInt(this.state.category_id), user_id: localStorage.user_id}
         this.props.fetchPostActivityCreator(data)
     }
 

@@ -1,16 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import Login from '../forms/login';
-// import Signup from '../forms/signup';
+import { removeCurrentUser } from '../actionCreators/actionCreater'
+import { connect } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 
 
+function Navbar(props) {
+    let history = useHistory();
 
-class Navbar extends React.Component {
-
-    render() {
-        return (
-            <div className='mynavbar'>
+    function logOut() {
+        props.removeCurrentUser()
+        localStorage.clear()
+        history.push("/");
+    }
+    return (
+        <div className='mynavbar'>
             <nav className="navbar navbar-expand-md navbar-light bg-">
                 <a href="/home" className="navbar-brand">
                     <img src="/examples/images/logo.svg" height="28" alt="CoolBrand"></img>
@@ -21,22 +26,24 @@ class Navbar extends React.Component {
 
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav">
-                        <Link to='/home'  ><button> Home </button>  </Link>
-                        <Link to='/activities'  ><button> All Activities </button>  </Link>
+                        {props.currentUser ? <Link to='/home'  ><button> Home </button>  </Link> : null}
+                        {props.currentUser ? <Link to='/activities'  ><button> All Activities </button>  </Link> : null}
 
                     </div>
 
                     <div className="navbar-nav ml-auto">
-                        <Link to='/myprofile'><button> Profile </button></Link>
+                        {props.currentUser ? <Link to='/myprofile'><button> Profile </button></Link> : null}
+                        {props.currentUser ? <button onClick={logOut}> Logout </button> : null}
+
                     </div>
                 </div>
 
             </nav>
-            </div>
+        </div>
 
-        )
-    }
+    )
 }
 
-export default Navbar
+
+export default connect(null, { removeCurrentUser })(Navbar)
 

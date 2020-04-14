@@ -7,6 +7,7 @@ import Search from '../components/search'
 import AllActivities from './allActivities'
 import Filter from '../components/filter'
 import ActivitiesContainer from './ActivitiesContainer'
+import AddActivity from '../forms/addActivity'
 
 
 class ActivitiesPage extends React.Component {
@@ -87,6 +88,7 @@ class ActivitiesPage extends React.Component {
                 <Search changeSearchInput={this.changeSearchInput} changeButtonState={this.changeButtonState} />
                 <Filter SelectCategory={this.SelectCategory} />
                 <AllActivities renderActivtites={this.renderActivtites} />
+                <AddActivity currentUser={this.props.currentUser}/>
             </div>
 
         )
@@ -96,7 +98,8 @@ class ActivitiesPage extends React.Component {
 const msp = state => {
     return {
         activities: state.activities,
-        categories: state.categories
+        categories: state.categories,
+        currentUser: state.currentUser
     }
 }
 

@@ -44,6 +44,6 @@ export const fetchDeleteActivityCreator = (id) => dispatch => {
 }
 
 
-export const assignCurrentUser = (user) => ({type: 'ASSIGN_USER', payload: user}) 
+export const assignCurrentUser = (user) => ({type: 'ASSIGN_USER', payload: user})  
 
 export const removeCurrentUser = () => ({type: 'REMOVE_USER'})
