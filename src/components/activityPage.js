@@ -71,6 +71,8 @@ class ActivityPage extends React.Component {
             .then(response => {
                 if (response.errors) { alert(response.errors) } else {
                     this.setState({ chatroom: response })
+                    console.log('response', response)
+                    
                 }
             })
     }

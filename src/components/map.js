@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './marker.js'
 
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-
-
 class Map extends Component {
 
   state = {

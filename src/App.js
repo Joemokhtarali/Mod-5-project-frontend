@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
-import { fetchCateogriesCreator, fetchActivitiesCreator, assignCurrentUser, removeCurrentUser } from './actionCreators/actionCreater'
+import { fetchCateogriesCreator, fetchActivitiesCreator, assignCurrentUser } from './actionCreators/actionCreater'
 import Navbar from '../src/containers/Navbar'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './containers/home'
@@ -43,6 +43,8 @@ class App extends React.Component {
 
 
   render() {
+    console.log('currentUser', this.props.currentUser);
+    
     return (
       <Router>
         <Navbar currentUser={this.props.currentUser}/>

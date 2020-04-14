@@ -1,5 +1,4 @@
 import React from 'react'
-import AddActivity from '../forms/addActivity';
 import '../stylesheets/profile.css'
 import 'typeface-roboto';
 
