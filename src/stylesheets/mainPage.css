@@ -1,20 +1,32 @@
 .main-page {
     margin: auto;
-    background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80');
-    background-repeat: no-repeat;
+    /* background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80'); */
+    /* background-repeat: no-repeat;
     background-size: 100vh fixed;
     margin-bottom: 10px; 
     background-size: cover;
     height: 100vh;
-    justify-content: center;
+    justify-content: center; */
 } 
 
 
-#myVideo {
-    position: fixed;
+#video1 {
+    position: fixed; 
+    z-index: -1;
     right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
+  }
+
+  @media (min-aspect-ratio: 16/9) {
+      #video1 {
+          width: 100%;
+          height: auto;
+      }
+  }
+  
+  @media (max-aspect-ratio: 16/9) {
+      #video1 {
+          width: auto;
+          height: 100%;
+      }
   }
   
