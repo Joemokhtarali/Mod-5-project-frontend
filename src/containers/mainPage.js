@@ -2,35 +2,39 @@ import React from 'react';
 import '../stylesheets/mainPage.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SignupT from '../forms/signup2';
-import Login2 from '../forms/login2';
+import LoginT from '../forms/login2';
+import Button from '@material-ui/core/Button';
 // import Login from '../forms/login';
-
+import Ballon from './airballoon1.mp4'
 
 class MainPage extends React.Component {
 
     state = {
-        signup: false
+        signupState: true
     }
 
     changeSingupState = () => {
         this.setState({
-            signup: !this.state.signup
+            signupState: !this.state.signupState
         })
     }
 
 
     render() {
-        console.log(this.state.signup);
-        
+        console.log(this.changeSingupState);
+
         return (
             <div className='main-page'>
-                
-                <video id='video1' autoPlay muted loop >
-                    <source src='https://vod-progressive.akamaized.net/exp=1586918597~acl=%2A%2F1496953608.mp4%2A~hmac=f160bbf7e0c94ae3813ca89e3dd0c1e7a870e18db7e303dbd52f0efbdd4b5f73/vimeo-prod-skyfire-std-us/01/2747/14/363737105/1496953608.mp4' type='video/mp4' />
-                </video>
-                {this.state.signup ? <SignupT changeSingupState={this.changeSingupState}/> : <Login2 changeSingupState={this.changeSingupState}/>}
 
+                <video id='video1' autoPlay muted loop >
+                    <source src={Ballon} type='video/mp4' />
+                </video>
+                <div>
+                    {this.state.signupState ? <SignupT /> : <LoginT />}
+                    {/* <button onclick={this.changeSingupState}>New Member</button> */}
+                </div>
             </div>
+
         )
     }
 }

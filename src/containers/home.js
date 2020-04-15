@@ -12,7 +12,7 @@ class Home extends React.Component {
             addActivity: !this.state.addActivity
         })
     }
-
+ 
 
     render() {
         // console.log('homepage', this.props.history);
@@ -21,6 +21,7 @@ class Home extends React.Component {
             <div className='home-page'>
                 {/* <Jumbotron /> */}
                 {/* <HomeSlides categories={this.props.categories} /> */}
+                <img src='https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='image' height='700px' width='100%' />
                 <h4>Browse By Category</h4>
                 <br />
                 <CateogriesContainer history={this.props.history}/>  

@@ -47,8 +47,8 @@ function NewNavBar(props) {
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         MyActivities
-                        {props.currentUser ? <Button component={Link} to='/activities' color="inherit">Activities</Button> : null}
                         {props.currentUser ? <Button component={Link} to='/home' color="inherit">Home</Button> : null}
+                        {props.currentUser ? <Button component={Link} to='/activities' color="inherit">Activities</Button> : null}
                     </Typography>
                     {props.currentUser ?
                          <Button component={Link} to='/addactivity' color="inherit">Add Activity</Button> : null

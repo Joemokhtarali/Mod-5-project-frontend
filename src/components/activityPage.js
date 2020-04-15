@@ -104,7 +104,7 @@ class ActivityPage extends React.Component {
                             <Map activity={this.state.activity} />
                         </div>
                     </div>
-                    : <h2>'Please Login or Signup first to see!!!'</h2>
+                    : <div></div>
                 }
             </div>
         )

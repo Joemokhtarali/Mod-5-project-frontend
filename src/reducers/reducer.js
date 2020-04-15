@@ -1,7 +1,7 @@
 const defaultState = {
     categories: [],
     activities: [], 
-    currentUser: {id: 1, username:'Mocha', city:'New York City', password:'1234', image:'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B'}
+    currentUser: {id: 1, username:'Mocha', city:'New York City', password:'1234', image:"https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"}
 }
 
 function reducer(state = defaultState, action) {

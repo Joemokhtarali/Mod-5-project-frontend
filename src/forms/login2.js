@@ -77,7 +77,7 @@ function LoginT(props) {
                     onChange={handleChange2}
                 />
                 <Button onClick={handleSubmit}>Login</Button>
-                <Button onclick={props.changeSingupState}>New Member</Button>
+                
             </FormControl>
         </div>
     );

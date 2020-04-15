@@ -10,6 +10,7 @@ import { fetchPostActivityCreator } from '../actionCreators/actionCreater'
 import { connect } from 'react-redux'
 import '../stylesheets/mainPage.css'
 import DatePicker from "react-datepicker";
+import Covid19 from './covid192.mp4'
 
 
 
@@ -28,7 +29,6 @@ function AddActivityT(props) {
     let history = useHistory();
     const classes = useStyles();
     const [name, setname] = React.useState('');
-    const [activityType, setactivityType] = React.useState('');
     const [image, setimage] = React.useState('');
     const [about, setabout] = React.useState('');
     // const [date, setdate] = React.useState(new Date());
@@ -43,9 +43,6 @@ function AddActivityT(props) {
 
     const handleChange1 = (event) => {
         setname(event.target.value);
-    };
-    const handleChange2 = (event) => {
-        setactivityType(event.target.value);
     };
     const handleChange3 = (event) => {
         setimage(event.target.value);
@@ -66,17 +63,17 @@ function AddActivityT(props) {
         event.preventDefault()
         let data = { name: name, image: image, date: selectedDate, address: address, about: about, category_id: parseInt(category_id), user_id: props.currentUser.id }
         props.fetchPostActivityCreator(data)
-        history.push(`/activities`)
+        history.push(`/home`)
     }
 
-    
+
     return (
         <div>
             <Alert severity="warning" style={{ textAlign: 'center' }}>Due to Covid-19, Add an activity on your own risk!</Alert>
             <video id='video1' autoPlay muted loop >
-                <source src='https://vod-progressive.akamaized.net/exp=1586929622~acl=%2A%2F1698360923.mp4%2A~hmac=2af0e496ee71df1e87710ab0b03e785c9df54655c43dc654abf2159d71998c66/vimeo-prod-skyfire-std-us/01/4710/15/398551000/1698360923.mp4' type='video/mp4' />
+                <source src={Covid19} type='video/mp4' />
             </video>
-            
+
             <FormControl className={classes.margin}>
                 <Button onClick={() => history.push('/activities')}>Back</Button>
                 <TextField
@@ -86,30 +83,6 @@ function AddActivityT(props) {
                     placeholder='name'
                     value={name}
                     onChange={handleChange1}
-                />
-                <TextField
-                    required
-                    id="standard-required"
-                    label="activity type"
-                    type="activity type"
-                    value={activityType}
-                    onChange={handleChange2}
-                />
-                <TextField
-                    required
-                    id="standard-required"
-                    label="image"
-                    placeholder='image'
-                    value={image}
-                    onChange={handleChange3}
-                />
-                <TextField
-                    required
-                    id="standard"
-                    label="About"
-                    placeholder='About'
-                    value={about}
-                    onChange={handleChange4}
                 />
                 <NativeSelect
                     id="demo-customized-select-native"
@@ -131,8 +104,26 @@ function AddActivityT(props) {
                     value={address}
                     onChange={handleChange6}
                 />
+                <TextField
+                    required
+                    id="standard-required"
+                    label="image"
+                    placeholder='image'
+                    value={image}
+                    onChange={handleChange3}
+                />
+                <TextField
+                    required
+                    id="standard"
+                    label="About"
+                    placeholder='About'
+                    value={about}
+                    onChange={handleChange4}
+                />
+
+
                 <DatePicker selected={selectedDate} value={selectedDate} onChange={handleDateChange} />
-            <Button onClick={handleSubmit}>Add Activity</Button>
+                <Button onClick={handleSubmit}>Add Activity</Button>
             </FormControl>
 
         </div>

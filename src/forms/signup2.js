@@ -103,7 +103,8 @@ function SignupT(props) {
                     onChange={handleChange4}
                 />
                 <Button onClick={handleSubmit}>Signup</Button>
-                <Button onclick={props.changeSingupState}>Already a Member</Button>
+                <Button >Already Member</Button>
+                
             </FormControl>
 
 
