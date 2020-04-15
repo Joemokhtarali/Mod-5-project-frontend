@@ -1,12 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchDeleteActivityCreator } from '../actionCreators/actionCreater'
-import EditActivity from '../forms/editActivity'
+import EditActivityT from '../forms/editActivity2'
 import Map from './map'
 import Chatroom from './chatroom'
-
-
-
+import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 
 class ActivityPage extends React.Component {
@@ -72,7 +71,7 @@ class ActivityPage extends React.Component {
                 if (response.errors) { alert(response.errors) } else {
                     this.setState({ chatroom: response })
                     console.log('response', response)
-                    
+
                 }
             })
     }
@@ -81,28 +80,31 @@ class ActivityPage extends React.Component {
     render() {
         return (
             <div>
-                {this.state.activity && this.state.host ?
+
+                {this.state.activity ?
                     <div>
                         <h3>{this.state.activity.name}</h3>
                         <h5>Happening on:{this.state.activity.date}</h5>
                         <h4>Created By: {this.state.host.name}</h4>
                         <img src={this.state.activity.image} height='400px'></img>
                         <h6>{this.state.activity.address}</h6>
-                        <p><strong>About: </strong><br />{this.state.activity.about}</p> 
-                        
-                        {this.props.currentUser.id === this.state.host.id ?
-                            <div><button onClick={this.switchEditActivityState}>Edit Activity</button> <button onClick={this.deleteActivity}>Delete Activity</button></div> : null
+                        <p><strong>About: </strong><br />{this.state.activity.about}</p>
+
+                        {this.props.currentUser && this.props.currentUser.id === this.state.host.id ?
+                        <div><Button onClick={this.switchEditActivityState} >Edit Activity</Button>  <Button onClick={this.deleteActivity}>Delete Activity</Button></div> : null
+                            // <div><button onClick={this.switchEditActivityState}>Edit Activity</button> <button onClick={this.deleteActivity}>Delete Activity</button></div> : null
                         }
-                        {this.state.editActivityState ? <div><EditActivity activity={this.state.activity} currentUser={this.props.currentUser} /> <button onClick={this.switchEditActivityState}>Close Form</button> </div> : null}
+                    
+                        {this.state.editActivityState ? <div><EditActivityT activity={this.state.activity} currentUser={this.props.currentUser} /> <Button onClick={this.switchEditActivityState}>Go Back</Button> </div> : null}
                         {this.props.currentUser.id === this.state.host.id || this.state.users.some(user => user.id === this.props.currentUser.id) ? null : <button onClick={this.joinActivity}>Join Activity</button>}
                         <br />
-                        {this.state.chatroom ? <Chatroom chatroom={this.state.chatroom} currentUser={this.props.currentUser} participants={this.state.participants}/> : <button onClick={this.startChatFunc}>Start Chat</button>}
+                        {this.state.chatroom ? <Chatroom chatroom={this.state.chatroom} currentUser={this.props.currentUser} participants={this.state.participants} /> : <button onClick={this.startChatFunc}>Start Chat</button>}
 
                         <div height='400' width='400'>
                             <Map activity={this.state.activity} />
                         </div>
                     </div>
-                    : <h2>'Loading!!!'</h2>
+                    : <h2>'Please Login or Signup first to see!!!'</h2>
                 }
             </div>
         )

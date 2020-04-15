@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { fetchPatchActivityCreator } from '../actionCreators/actionCreater'
+import { fetchPatchActivityCreator } from '../actionCreators/actionCreater'  
 import { connect } from 'react-redux'
 
 class EditActivity extends React.Component {
@@ -64,7 +64,7 @@ class EditActivity extends React.Component {
                     <label >Date:</label>
                     <DatePicker selected={this.state.date} value={this.state.date} onChange={this.handleDateChange} />
                     {/* showTimeSelect dateFormat="Pp" */}
-                    <button>Edit Activity</button>
+                    <button onClick=>Edit Activity</button>
                 </form>
             </div>
         )

@@ -1,16 +1,11 @@
 import React from 'react'
 import CateogriesContainer from './categoriesContainer'
-import AddActivity from '../forms/addActivity'
 import '../../src/index.css'
-import HomeSlides from '../components/homeSlides'
 import { connect } from 'react-redux'
+import Jumbotron from '../components/Jumbotron'
 
 
 class Home extends React.Component {
-    state = {
-        addActivity: false,
-
-    }
 
     switchAddActivityState = () => {
         this.setState({
@@ -24,11 +19,11 @@ class Home extends React.Component {
         
         return (
             <div className='home-page'>
+                {/* <Jumbotron /> */}
                 {/* <HomeSlides categories={this.props.categories} /> */}
                 <h4>Browse By Category</h4>
                 <br />
                 <CateogriesContainer history={this.props.history}/>  
-                {this.state.addActivity ? <div><AddActivity /> <button onClick={this.switchAddActivityState}>Close Form</button></div> : <button onClick={this.switchAddActivityState}>Add Activity</button>}
             </div>
         )
     }

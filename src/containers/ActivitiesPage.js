@@ -68,7 +68,6 @@ class ActivitiesPage extends React.Component {
         if (this.state.searchButton){ console.log('true', this.state.searchButton)
         
             activitiesCopy = this.props.activities.filter(activity => activity.name.toLowerCase().includes(this.state.searchTerm))}
-            console.log('activitiesCopy', activitiesCopy)
         return activitiesCopy.map((activity, index) => <Activity index={index} key={activity.id} activity={activity} history={this.props.history} />)
     }
 
@@ -81,7 +80,6 @@ class ActivitiesPage extends React.Component {
                 <Search changeSearchInput={this.changeSearchInput} changeButtonState={this.changeButtonState} />
                 <Filter SelectCategory={this.SelectCategory} />
                 <AllActivities renderActivtites={this.renderActivtites} />
-                <AddActivity currentUser={this.props.currentUser} />
             </div>
         )
     }

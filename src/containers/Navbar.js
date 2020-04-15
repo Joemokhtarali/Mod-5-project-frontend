@@ -13,7 +13,7 @@ function Navbar(props) {
         props.removeCurrentUser()
         localStorage.clear()
         history.push("/");
-    }
+    } 
     return (
         <div className='mynavbar'>
             <nav className="navbar navbar-expand-md navbar-light bg-">

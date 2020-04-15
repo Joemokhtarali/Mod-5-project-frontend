@@ -154,7 +154,7 @@ export default function Chatroom(props) {
     
 
     function renderParticipants() {
-        return props.participants.map(p => <Avatar alt={p.name} src={p.image} onClick={() => { }} />)
+        return props.participants.map(p => <Avatar alt={p.name} src={p.image} />)
     }
 
     return (

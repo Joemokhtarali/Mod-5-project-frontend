@@ -29,7 +29,9 @@ export const fetchPatchActivityCreator = (id, data) => dispatch => {
         },
         body: JSON.stringify(data)
     }).then(resp => resp.json()).then(response => {
-        dispatch({ type: 'EDIT_ACTIVITY', payload: response })
+        console.log(response)
+        
+        // dispatch({ type: 'EDIT_ACTIVITY', payload: response })
     })
 }
 

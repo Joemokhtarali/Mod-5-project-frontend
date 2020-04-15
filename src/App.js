@@ -2,13 +2,14 @@ import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
 import { fetchCateogriesCreator, fetchActivitiesCreator, assignCurrentUser } from './actionCreators/actionCreater'
-import Navbar from '../src/containers/Navbar'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './containers/home'
 import Profile from './components/profile';
 import ActivitiesPage from './containers/ActivitiesPage';
 import MainPage from './containers/mainPage'
 import ActivityPage from './components/activityPage';
+import NewNavBar from './containers/newNavbar';
+import AddActivityT from './forms/addActivity2';
 
 
 
@@ -43,12 +44,12 @@ class App extends React.Component {
 
 
   render() {
-    console.log('currentUser', this.props.currentUser);
     
     return (
       <Router>
-        <Navbar currentUser={this.props.currentUser}/>
-        <Route exact path='/Home' component={Home} />
+        <NewNavBar currentUser={this.props.currentUser}/>
+        <Route exact path='/addactivity' render={() => <AddActivityT currentUser={this.props.currentUser}/>} />
+        <Route exact path='/home' component={Home} />
         <Route exact path='/' component={MainPage} />
         <Route path='/activities/:id' component={ActivityPage} />
         <Route exact path='/activities' component={ActivitiesPage} />
