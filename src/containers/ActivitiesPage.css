@@ -1,0 +1,13 @@
+.activities-page {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    /* flex-direction: column-reverse; */
+    /* align-content: center */
+    /* flex-direction:column */
+
+}
+
+.activity-box {
+    margin: 20px auto;
+}

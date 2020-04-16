@@ -4,7 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@material-ui/lab/Alert'; 
 import { useHistory } from "react-router-dom";
 import { fetchPostActivityCreator } from '../actionCreators/actionCreater'
 import { connect } from 'react-redux' 

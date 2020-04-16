@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Activity from '../components/activity'
+// import Activity from '../components/activity'
 import Search from '../components/search'
 import AllActivities from './allActivities'
 import Filter from '../components/filter'
-import AddActivity from '../forms/addActivity'
+import './ActivitiesPage.css'
+
+
 
 
 class ActivitiesPage extends React.Component {
@@ -38,7 +40,7 @@ class ActivitiesPage extends React.Component {
 
     }
 
-    renderActivtites = () => {
+    getActivtites = () => {
         let activitiesCopy;
 
         switch (this.state.filteredCategory) {
@@ -65,10 +67,11 @@ class ActivitiesPage extends React.Component {
             default:
 
         }
-        if (this.state.searchButton){ console.log('true', this.state.searchButton)
+        if (this.state.searchButton) {
+            activitiesCopy = this.props.activities.filter(activity => activity.name.toLowerCase().includes(this.state.searchTerm))
+        }
+        return activitiesCopy
         
-            activitiesCopy = this.props.activities.filter(activity => activity.name.toLowerCase().includes(this.state.searchTerm))}
-        return activitiesCopy.map((activity, index) => <Activity index={index} key={activity.id} activity={activity} history={this.props.history} />)
     }
 
 
@@ -79,7 +82,9 @@ class ActivitiesPage extends React.Component {
             <div>
                 <Search changeSearchInput={this.changeSearchInput} changeButtonState={this.changeButtonState} />
                 <Filter SelectCategory={this.SelectCategory} />
-                <AllActivities renderActivtites={this.renderActivtites} />
+                <div activities-container>
+                    <AllActivities activities={this.getActivtites()} />
+                </div>
             </div>
         )
     }
