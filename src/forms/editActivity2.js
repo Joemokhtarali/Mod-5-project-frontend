@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function EditActivityT(props) {
+function EditActivityT(props) { 
     let history = useHistory();
     const classes = useStyles();
     const [name, setname] = React.useState(props.activity.name);
@@ -61,17 +61,14 @@ function EditActivityT(props) {
         setcategory_id(event.target.value);
     };
 
+    
 
     function handleSubmit(event) {
         event.preventDefault()
-        let data = { name: name, image: image, date: selectedDate, address: address, about: about, category_id: parseInt(category_id)}
+        let data = { name, image: image, date: selectedDate, address: address, about: about, category_id: parseInt(category_id)}
         let id = props.activity.id
-        fetchPatchActivityCreator(id, data)
-        // history.push(`/activities/${props.activity.id}`)
-        // event.preventDefault()
-        // let data = { name: name, image: image, date: selectedDate, address: address, about: about, category_id: parseInt(category_id), user_id: props.currentUser.id }
-        // props.fetchPostActivityCreator(data)
-        // history.push(`/activities`)
+        props.fetchPatchActivityCreator(id, data)
+        history.push(`/activities/${id}`)
     }
 
     
@@ -81,7 +78,7 @@ function EditActivityT(props) {
                 <Button onClick={() => history.push('/activities')}>Back</Button>
                 <TextField
                     required
-                    id="standard-required"
+                    id="standard-required5"
                     label="name"
                     placeholder='name'
                     value={name}
@@ -89,7 +86,7 @@ function EditActivityT(props) {
                 />
                 <TextField
                     required
-                    id="standard-required"
+                    id="standard-required4"
                     label="activity type"
                     type="activity type"
                     value={activityType}
@@ -97,7 +94,7 @@ function EditActivityT(props) {
                 />
                 <TextField
                     required
-                    id="standard-required"
+                    id="standard-required3"
                     label="image"
                     placeholder='image'
                     value={image}
@@ -105,7 +102,7 @@ function EditActivityT(props) {
                 />
                 <TextField
                     required
-                    id="standard"
+                    id="standard-required2"
                     label="About"
                     placeholder='About'
                     value={about}
@@ -125,7 +122,7 @@ function EditActivityT(props) {
                 </NativeSelect>
                 <TextField
                     required
-                    id="standard"
+                    id="standard-required1"
                     label="address"
                     placeholder='address'
                     value={address}

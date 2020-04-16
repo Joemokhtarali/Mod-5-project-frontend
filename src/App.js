@@ -32,6 +32,7 @@ class App extends React.Component {
         .then(response => {
           if (response.errors) {
             alert(response.errors)
+            this.props.history.push('/')
           } else {
             this.props.assignCurrentUser(response)
 
@@ -44,7 +45,6 @@ class App extends React.Component {
 
 
   render() {
-    
     return (
       <Router>
         <NewNavBar currentUser={this.props.currentUser}/>

@@ -11,7 +11,7 @@ class ActivitiesPage extends React.Component {
 
     state = {
         searchTerm: '',
-        searchButton: false,
+        searchButton: true,
         SearchedActivities: [],
         length: 0,
         filteredCategory: 'All'

@@ -21,6 +21,8 @@ export const fetchPostActivityCreator = (data) => dispatch => {
     })
 }
 export const fetchPatchActivityCreator = (id, data) => dispatch => {
+    console.log('starting fetch patch')
+    
     fetch(`http://localhost:3000/activities/${id}`, {
         method: 'PATCH',
         headers: {
@@ -29,9 +31,8 @@ export const fetchPatchActivityCreator = (id, data) => dispatch => {
         },
         body: JSON.stringify(data)
     }).then(resp => resp.json()).then(response => {
-        console.log(response)
+        dispatch({ type: 'EDIT_ACTIVITY', payload: response })
         
-        // dispatch({ type: 'EDIT_ACTIVITY', payload: response })
     })
 }
 

@@ -21,8 +21,6 @@ class MainPage extends React.Component {
 
 
     render() {
-        console.log(this.changeSingupState);
-
         return (
             <div className='main-page'>
 

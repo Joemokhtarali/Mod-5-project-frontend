@@ -78,6 +78,8 @@ class ActivityPage extends React.Component {
 
 
     render() {
+        // console.log(this.state.host);
+        
         return (
             <div>
 
@@ -85,11 +87,11 @@ class ActivityPage extends React.Component {
                     <div>
                         <h3>{this.state.activity.name}</h3>
                         <h5>Happening on:{this.state.activity.date}</h5>
-                        <h4>Created By: {this.state.host.name}</h4>
+                        <h4>Created By: {this.state.host.username}</h4>
                         <img src={this.state.activity.image} height='400px'></img>
                         <h6>{this.state.activity.address}</h6>
                         <p><strong>About: </strong><br />{this.state.activity.about}</p>
-
+ 
                         {this.props.currentUser && this.props.currentUser.id === this.state.host.id ?
                         <div><Button onClick={this.switchEditActivityState} >Edit Activity</Button>  <Button onClick={this.deleteActivity}>Delete Activity</Button></div> : null
                             // <div><button onClick={this.switchEditActivityState}>Edit Activity</button> <button onClick={this.deleteActivity}>Delete Activity</button></div> : null

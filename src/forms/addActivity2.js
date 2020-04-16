@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
 import { fetchPostActivityCreator } from '../actionCreators/actionCreater'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux' 
 import '../stylesheets/mainPage.css'
 import DatePicker from "react-datepicker";
 import Covid19 from './covid192.mp4'
@@ -34,7 +34,7 @@ function AddActivityT(props) {
     // const [date, setdate] = React.useState(new Date());
     const [address, setaddress] = React.useState('');
     const [category_id, setcategory_id] = React.useState(1);
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-04-17T21:11:54'));
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -63,7 +63,7 @@ function AddActivityT(props) {
         event.preventDefault()
         let data = { name: name, image: image, date: selectedDate, address: address, about: about, category_id: parseInt(category_id), user_id: props.currentUser.id }
         props.fetchPostActivityCreator(data)
-        history.push(`/home`)
+        history.push(`/activities`)
     }
 
 
@@ -91,7 +91,7 @@ function AddActivityT(props) {
                     onChange={handleChange7}
                 >
                     <option aria-label="None" value="" />
-                    <option value={1}>Theaters</option>
+                    <option value={1}>Beach</option>
                     <option value={2}>Sports</option>
                     <option value={3}>Nature</option>
                     <option value={4}>Arts And Museumes</option>

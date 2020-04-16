@@ -64,7 +64,7 @@ class EditActivity extends React.Component {
                     <label >Date:</label>
                     <DatePicker selected={this.state.date} value={this.state.date} onChange={this.handleDateChange} />
                     {/* showTimeSelect dateFormat="Pp" */}
-                    <button onClick=>Edit Activity</button>
+                    {/* <button onClick=Edit Activity</button> */}
                 </form>
             </div>
         )
