@@ -5,7 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    padding: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+home-page {
+  padding: 10px;
+  margin: 10px;
 }
 
 code {

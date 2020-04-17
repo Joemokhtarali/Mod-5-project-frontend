@@ -17,17 +17,19 @@ const useStyles = makeStyles((theme) => ({
     },
     flex: {
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        // 'text-align': 'right'
     },
     chatwindow: {
         width: '100%',
-        height: '300px',
+        height: '400px',
         padding: '20px',
-        overflow: 'auto'
+        overflow: 'auto',
+        'background-color': 'rgb(240, 241, 242)',
 
     },
     chatbox: {
-        width: '85%'
+        width: '85%',
     },
     button: {
         width: '15%'
@@ -141,7 +143,7 @@ export default function Chatroom(props) {
         return messages.map((msg, i) => (
             <div className={classes.flex} key={i}>
                 <Chip label={msg.user_name} className={classes.chip} />
-                <Typography variant='p'> {msg.content} </Typography>
+                <Typography variant='p' > {msg.content} </Typography >
             </div>
         ))
     }
@@ -151,7 +153,7 @@ export default function Chatroom(props) {
             postMessage()
         }
     }
-    
+
 
     function renderParticipants() {
         return props.participants.map(p => <Avatar alt={p.name} src={p.image} />)
@@ -198,7 +200,7 @@ export default function Chatroom(props) {
                     Participants
                 </Typography>
                 <div className={classes.avatars}>
-                        {renderParticipants()}
+                    {renderParticipants()}
                 </div>
             </Paper>
         </div>

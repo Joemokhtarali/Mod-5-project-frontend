@@ -4,13 +4,15 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Alert from '@material-ui/lab/Alert'; 
+import Alert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
 import { fetchPostActivityCreator } from '../actionCreators/actionCreater'
-import { connect } from 'react-redux' 
+import { connect } from 'react-redux'
 import '../stylesheets/mainPage.css'
+import balloon from './airballon2.mp4'
 import DatePicker from "react-datepicker";
-import Covid19 from './covid192.mp4'
+import "react-datepicker/dist/react-datepicker.css";
+
 
 
 
@@ -34,7 +36,7 @@ function AddActivityT(props) {
     // const [date, setdate] = React.useState(new Date());
     const [address, setaddress] = React.useState('');
     const [category_id, setcategory_id] = React.useState(1);
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2020-04-17T21:11:54'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date());
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -68,65 +70,68 @@ function AddActivityT(props) {
 
 
     return (
-        <div>
+        <div className='main-page'>
             <Alert severity="warning" style={{ textAlign: 'center' }}>Due to Covid-19, Add an activity on your own risk!</Alert>
             <video id='video1' autoPlay muted loop >
-                <source src={Covid19} type='video/mp4' />
+                <source src={balloon} type='video/mp4' />
             </video>
 
-            <FormControl className={classes.margin}>
-                <Button onClick={() => history.push('/activities')}>Back</Button>
-                <TextField
-                    required
-                    id="standard-required"
-                    label="name"
-                    placeholder='name'
-                    value={name}
-                    onChange={handleChange1}
-                />
-                <NativeSelect
-                    id="demo-customized-select-native"
-                    placeholder='Select Category'
-                    value={category_id}
-                    onChange={handleChange7}
-                >
-                    <option aria-label="None" value="" />
-                    <option value={1}>Beach</option>
-                    <option value={2}>Sports</option>
-                    <option value={3}>Nature</option>
-                    <option value={4}>Arts And Museumes</option>
-                </NativeSelect>
-                <TextField
-                    required
-                    id="standard"
-                    label="address"
-                    placeholder='address'
-                    value={address}
-                    onChange={handleChange6}
-                />
-                <TextField
-                    required
-                    id="standard-required"
-                    label="image"
-                    placeholder='image'
-                    value={image}
-                    onChange={handleChange3}
-                />
-                <TextField
-                    required
-                    id="standard"
-                    label="About"
-                    placeholder='About'
-                    value={about}
-                    onChange={handleChange4}
-                />
+            <div className='form' >
 
+                <FormControl className={classes.margin}>
+                    <Button onClick={() => history.push('/activities')}>Back</Button>
+                    <TextField
+                        required
+                        id="standard-required"
+                        label="name"
+                        placeholder='name'
+                        value={name}
+                        onChange={handleChange1}
+                    />
+                    <NativeSelect
+                        id="demo-customized-select-native"
+                        placeholder='Select Category'
+                        value={category_id}
+                        onChange={handleChange7}
+                    >
+                        <option aria-label="None" value="" />
+                        <option value={1}>Beach</option>
+                        <option value={2}>Sports</option>
+                        <option value={3}>Nature</option>
+                        <option value={4}>Arts And Museumes</option>
+                    </NativeSelect>
+                    <TextField
+                        required
+                        id="standard"
+                        label="address"
+                        placeholder='address'
+                        value={address}
+                        onChange={handleChange6}
+                    />
+                    <TextField
+                        required
+                        id="standard-required"
+                        label="image"
+                        placeholder='image'
+                        value={image}
+                        onChange={handleChange3}
+                    />
+                    <TextField
+                        required
+                        id="standard"
+                        label="About"
+                        placeholder='About'
+                        value={about}
+                        onChange={handleChange4}
+                    />
 
-                <DatePicker selected={selectedDate} value={selectedDate} onChange={handleDateChange} />
-                <Button onClick={handleSubmit}>Add Activity</Button>
-            </FormControl>
-
+                    {/* <ReactDatePicker /> */}
+                        <DatePicker selected={selectedDate} value={selectedDate} onChange={handleDateChange} />
+                    <Button onClick={handleSubmit}>Add Activity</Button>
+                </FormControl>
         </div>
+
+        </div >
     );
 }
 

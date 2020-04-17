@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
@@ -16,8 +17,9 @@ const useStyles = makeStyles({
         height: 300,
     },
 });
-
+ 
 export default function Activity(props) {
+    let history = useHistory();
     const classes = useStyles();
     // console.log(props.history);
     
@@ -33,7 +35,7 @@ export default function Activity(props) {
                     className={classes.media}
                     image={image}
                     title="Contemplative Reptile"
-                    onClick={() => props.history.push(`/activities/${id}`)}
+                    onClick={() => history.push(`/activities/${id}`)}
                 />
 
                 <CardContent>

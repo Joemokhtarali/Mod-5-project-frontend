@@ -16,6 +16,7 @@ import { connect } from 'react-redux'
 
 
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         '& .MuiTextField-root': {
@@ -61,7 +62,7 @@ function SignupT(props) {
             if (response.errors) { alert(response.errors) } else {
                 props.assignCurrentUser(response)
 
-                history.push("/home");
+                history.push("/activities");
                 localStorage.user_id = response.id
             }
         })

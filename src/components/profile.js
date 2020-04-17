@@ -44,7 +44,7 @@ class Profile extends React.Component {
         // console.log(this.props.activities);
 
         return (
-            <div>
+            <div> 
                 {this.state.activities ?
                     <div>
                         <div className='profile'>

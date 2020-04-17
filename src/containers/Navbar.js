@@ -26,8 +26,8 @@ function Navbar(props) {
 
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav">
-                        {props.currentUser ? <Link to='/home'  ><button> Home </button>  </Link> : null}
-                        {props.currentUser ? <Link to='/activities'  ><button> All Activities </button>  </Link> : null}
+                        {props.currentUser ? <Link to='/categories'  ><button> Categories </button>  </Link> : null}
+                        {props.currentUser ? <Link to='/activities'  ><button> Activities </button>  </Link> : null}
 
                     </div>
 

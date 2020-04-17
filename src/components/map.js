@@ -22,7 +22,7 @@ class Map extends Component {
   render() {
 
     return (
-      <div style={{ height: '30vh', width: '50%' }}>
+      <div style={{ height: '50vh', width: '100%' }}>
         {this.state.lat ?
           <GoogleMapReact
             bootstrapURLKeys={{ key: '' }}

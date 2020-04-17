@@ -27,9 +27,10 @@ class MainPage extends React.Component {
                 <video id='video1' autoPlay muted loop >
                     <source src={Ballon} type='video/mp4' />
                 </video>
-                <div>
+                <div style={{'margin-left':'6%'}}>
                     {this.state.signupState ? <SignupT /> : <LoginT />}
                     {/* <button onclick={this.changeSingupState}>New Member</button> */}
+                   
                 </div>
             </div>
 

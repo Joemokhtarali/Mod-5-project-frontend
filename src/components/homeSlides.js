@@ -1,52 +1,53 @@
 import React from 'react'
 import '../stylesheets/homeSlides.css'
+import Carousel from 'react-bootstrap/Carousel'
 import Slide from './slide'
+import ReactBootstrapCarousel from "react-bootstrap-carousel";
+import "bootstrap/dist/css/bootstrap.css";
+import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 
 
-const HomeSlides = (props) => {
-
-   
-//     var slideIndex = 1;
-//     props.showSlides(slideIndex)
-
-//     // Next/previous controls
-//     const plusSlides = (n) => { 
-//         props.showSlides(slideIndex += n);
-//     }
-
-//     // Thumbnail image controls
-//    const currentSlide = (n) => {
-//         props.showSlides(slideIndex = n);
-//     }
-
-//     props.showSlides = (n) => {
-//         var i;
-//         var slides = document.getElementsByClassName("mySlides");
-//         var dots = document.getElementsByClassName("dot");
-//         if (n > slides.length) { slideIndex = 1 }
-//         if (n < 1) { slideIndex = slides.length }
-//         for (i = 0; i < slides.length; i++) {
-//             slides[i].style.display = "none";
-//         }
-//         for (i = 0; i < dots.length; i++) {
-//             dots[i].className = dots[i].className.replace(" active", "");
-//         }
-//         slides[slideIndex - 1].style.display = "block";
-//         dots[slideIndex - 1].className += " active";
-//     }
-    const renderSlides = () => {
-        
-        return props.categories.map(category =>  <Slide key={category.id} {...category}/>)
-    }
-    
-    console.log(props.categories);
-    return (
-        <div className='homeSlides'>
-           {props.categories ? renderSlides(): <h1>NOT SHOWING</h1>}
-        </div>
-    )
-}
+// export default function HomeSlides(props) {
 
 
+//     return (
+//         <Carousel>
+//             <Carousel.Item>
+//                 <img
+//                     className="d-block w-100"
+//                     src="holder.js/800x400?text=First slide&bg=373940"
+//                     alt="First slide"
+//                 />
+//                 <Carousel.Caption>
+//                     <h3>First slide label</h3>
+//                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+//                 </Carousel.Caption>
+//             </Carousel.Item>
+//             <Carousel.Item>
+//                 <img
+//                     className="d-block w-100"
+//                     src="holder.js/800x400?text=Second slide&bg=282c34"
+//                     alt="Third slide"
+//                 />
 
-export default HomeSlides
+//                 <Carousel.Caption>
+//                     <h3>Second slide label</h3>
+//                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+//                 </Carousel.Caption>
+//             </Carousel.Item>
+//             <Carousel.Item>
+//                 <img
+//                     className="d-block w-100"
+//                     src="holder.js/800x400?text=Third slide&bg=20232a"
+//                     alt="Third slide"
+//                 />
+
+//                 <Carousel.Caption>
+//                     <h3>Third slide label</h3>
+//                     <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+//                 </Carousel.Caption>
+//             </Carousel.Item>
+//         </Carousel>
+//     )
+// }
+

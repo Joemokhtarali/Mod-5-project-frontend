@@ -6,6 +6,7 @@ import Map from './map'
 import Chatroom from './chatroom'
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+import './activityPage.css'
 
 
 class ActivityPage extends React.Component {
@@ -53,7 +54,7 @@ class ActivityPage extends React.Component {
     deleteActivity = () => {
         let id = this.state.activity.id
         this.props.fetchDeleteActivityCreator(id)
-        this.props.history.push('/home')
+        this.props.history.push('/activities')
     }
 
 
@@ -78,34 +79,36 @@ class ActivityPage extends React.Component {
 
 
     render() {
-        // console.log(this.state.host);
-        
         return (
-            <div>
+            <div className='main'>
 
                 {this.state.activity ?
                     <div>
-                        <h3>{this.state.activity.name}</h3>
-                        <h5>Happening on:{this.state.activity.date}</h5>
-                        <h4>Created By: {this.state.host.username}</h4>
-                        <img src={this.state.activity.image} height='400px'></img>
-                        <h6>{this.state.activity.address}</h6>
-                        <p><strong>About: </strong><br />{this.state.activity.about}</p>
- 
-                        {this.props.currentUser && this.props.currentUser.id === this.state.host.id ?
-                        <div><Button onClick={this.switchEditActivityState} >Edit Activity</Button>  <Button onClick={this.deleteActivity}>Delete Activity</Button></div> : null
-                            // <div><button onClick={this.switchEditActivityState}>Edit Activity</button> <button onClick={this.deleteActivity}>Delete Activity</button></div> : null
-                        }
-                    
-                        {this.state.editActivityState ? <div><EditActivityT activity={this.state.activity} currentUser={this.props.currentUser} /> <Button onClick={this.switchEditActivityState}>Go Back</Button> </div> : null}
-                        {this.props.currentUser.id === this.state.host.id || this.state.users.some(user => user.id === this.props.currentUser.id) ? null : <button onClick={this.joinActivity}>Join Activity</button>}
-                        <br />
-                        {this.state.chatroom ? <Chatroom chatroom={this.state.chatroom} currentUser={this.props.currentUser} participants={this.state.participants} /> : <button onClick={this.startChatFunc}>Start Chat</button>}
 
-                        <div height='400' width='400'>
+                        <div className='profile'>
+                            <img className='image' src={this.state.activity.image}></img>
+                            <div className='name'>{this.state.activity.name}</div>
+                            <div className='address'>Address: {this.state.activity.address}</div>
+                            <div className='date'>Happening on:{this.state.activity.date}</div>
+                            <div className='date'>Created By: {this.state.host.username}</div>
+                            <div className='date'>About: {this.state.activity.about}</div>
+                            <div className='buttons'>
+                                {this.props.currentUser.id === this.state.host.id || this.state.users.some(user => user.id === this.props.currentUser.id) ? <Button color="inherit" disabled={true} onClick={this.joinActivity}>Join Activity</Button> : <Button color="inherit" onClick={this.joinActivity}>Join Activity</Button>}
+                                {this.state.editActivityState ? <div><EditActivityT activity={this.state.activity} currentUser={this.props.currentUser} /> <Button onClick={this.switchEditActivityState}>Go Back</Button> </div> : null}
+                                {this.props.currentUser && this.props.currentUser.id === this.state.host.id ?
+                                    <div><Button onClick={this.switchEditActivityState} >Edit Activity</Button>  <Button onClick={this.deleteActivity}>Delete Activity</Button></div> : null}
+                            </div>
+                        </div>
+                        <div className='profile'>
                             <Map activity={this.state.activity} />
                         </div>
+                        <div className='profile'>
+                            {this.state.chatroom ? <Chatroom chatroom={this.state.chatroom} currentUser={this.props.currentUser} participants={this.state.participants} /> : <Button onClick={this.startChatFunc}>Start Chat</Button>}
+                        </div>
+
                     </div>
+
+
                     : <div></div>
                 }
             </div>

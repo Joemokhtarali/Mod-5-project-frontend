@@ -49,7 +49,7 @@ class App extends React.Component {
       <Router>
         <NewNavBar currentUser={this.props.currentUser}/>
         <Route exact path='/addactivity' render={() => <AddActivityT currentUser={this.props.currentUser}/>} />
-        <Route exact path='/home' component={Home} />
+        <Route exact path='/categories' component={Home} />
         <Route exact path='/' component={MainPage} />
         <Route path='/activities/:id' component={ActivityPage} />
         <Route exact path='/activities' component={ActivitiesPage} />
