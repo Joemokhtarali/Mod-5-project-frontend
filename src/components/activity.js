@@ -42,8 +42,11 @@ export default function Activity(props) {
                     <Typography gutterBottom variant="h5" component="h2" style={{ textAlign: 'center' }}>
                         {name}
                     </Typography>
+                    <Typography gutterBottom variant="h6" component="h6" style={{ textAlign: 'center' }}>
+                        {date}
+                    </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {about ? about.split(" ").slice(0, 20).join(' ') : about}
+                        {about ? about.split(" ").slice(0, 20).join(' ') : about}......more
                     </Typography>
                 </CardContent>
             </CardActionArea>

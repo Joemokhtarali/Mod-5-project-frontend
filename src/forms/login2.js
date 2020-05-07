@@ -37,6 +37,8 @@ function LoginT(props) {
     function handleSubmit(event) {
         event.preventDefault()
         let data = { username: username, password: password }
+        console.log(data);
+        
         fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
@@ -44,14 +46,14 @@ function LoginT(props) {
                 "Accept": "application/json"
             },
             body: JSON.stringify(data)
-
+ 
         }).then(res => res.json())
             .then(response => {
                 if (response.errors) {
                     alert(response.errors)
                 } else {
-                    this.props.assignCurrentUser(response)
-                    history.push('/home')
+                    props.assignCurrentUser(response)
+                    history.push("/categories");
                     localStorage.user_id = response.id
                 }
             })

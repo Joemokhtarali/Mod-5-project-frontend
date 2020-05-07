@@ -80,10 +80,10 @@ class ActivityPage extends React.Component {
 
     render() {
         return (
-            <div className='main'>
+            <div className='main' id='1'>
 
                 {this.state.activity ?
-                    <div>
+                    <div id='2'>
 
                         <div className='profile'>
                             <img className='image' src={this.state.activity.image}></img>
@@ -93,7 +93,7 @@ class ActivityPage extends React.Component {
                             <div className='date'>Created By: {this.state.host.username}</div>
                             <div className='date'>About: {this.state.activity.about}</div>
                             <div className='buttons'>
-                                {this.props.currentUser.id === this.state.host.id || this.state.users.some(user => user.id === this.props.currentUser.id) ? <Button color="inherit" disabled={true} onClick={this.joinActivity}>Join Activity</Button> : <Button color="inherit" onClick={this.joinActivity}>Join Activity</Button>}
+                                
                                 {this.state.editActivityState ? <div><EditActivityT activity={this.state.activity} currentUser={this.props.currentUser} /> <Button onClick={this.switchEditActivityState}>Go Back</Button> </div> : null}
                                 {this.props.currentUser && this.props.currentUser.id === this.state.host.id ?
                                     <div><Button onClick={this.switchEditActivityState} >Edit Activity</Button>  <Button onClick={this.deleteActivity}>Delete Activity</Button></div> : null}

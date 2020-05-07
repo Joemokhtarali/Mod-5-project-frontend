@@ -143,7 +143,7 @@ export default function Chatroom(props) {
         return messages.map((msg, i) => (
             <div className={classes.flex} key={i}>
                 <Chip label={msg.user_name} className={classes.chip} />
-                <Typography variant='p' > {msg.content} </Typography >
+                <Typography variant='h6' > {msg.content} </Typography >
             </div>
         ))
     }

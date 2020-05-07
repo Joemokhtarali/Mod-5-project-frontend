@@ -1,3 +1,4 @@
+
 export const fetchCateogriesCreator = () => dispatch => {
     fetch('http://localhost:3000/categories').then(resp => resp.json()).then(data => {
         dispatch({ type: 'FETCH_CATEGORIES', payload: { categories: data } })
@@ -9,7 +10,7 @@ export const fetchActivitiesCreator = () => dispatch => {
     })
 }
 
-export const fetchPostActivityCreator = (data) => dispatch => {
+export const fetchPostActivityCreator = (data) => dispatch => {      
     fetch('http://localhost:3000/activities', {
         method: 'POST',
         headers: {
@@ -19,6 +20,7 @@ export const fetchPostActivityCreator = (data) => dispatch => {
     }).then(resp => resp.json()).then(response => {
         dispatch({ type: 'ADD_ACTIVITY', payload: response })
     })
+
 }
 export const fetchPatchActivityCreator = (id, data) => dispatch => {
     console.log('starting fetch patch')

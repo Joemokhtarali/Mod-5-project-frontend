@@ -1,36 +1,45 @@
 import React from 'react'
+import BigMap from './bigMap'
 import '../stylesheets/profile.css'
 import 'typeface-roboto';
+import { useMouseAction, useMouseDown, useMouseUp } from "use-mouse-action"
+
+function Profile(props) {
+    // state = {
+    //     activities: [],
+    //     addActivityState: false,
+    //     lat: '',
+    //     lng: ''
+    // }
+    const [lat, setLat] = React.useState('');
+    const [lng, setLng] = React.useState('');
+    const [addActivityState, setAddActivityState] = React.useState(false);
+
+    React.useEffect(() => {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            setLat(position.coords.latitude)
+            setLng(position.coords.longitude)
+        });
+    }, []);
+    // componentDidMount() {
+    //     fetch(`http://localhost:3000/users/${props.currentUser.id}`)
+    //         .then(resp => resp.json())
+    //         .then(user => setState({ activities: user.activities }))
+    // }
 
 
-
-
-class Profile extends React.Component {
-
-    state = {
-        activities: [],
-        addActivityState: false,
-    }
-
-    componentDidMount() {
-        fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-            .then(resp => resp.json())
-            .then(user => this.setState({ activities: user.activities }))
-    }
-
-
-    addActivityStateSwitch = () => {
-        this.setState({ addActivityState: !this.state.addActivityState })
+    function addActivityStateSwitch() {
+        setAddActivityState(!addActivityState)
     }
 
     // renderMyActivities = () => {
-    //     return this.state.currentUser? this.state.activities.map(activity => <Activity  key={activity.id} activity={activity}/> ) :null 
+    //     return state.currentUser? state.activities.map(activity => <Activity  key={activity.id} activity={activity}/> ) :null 
     // }
 
     // renderMarkersForActivities = () => {
     //     let lat = 40.751679
     //     let lng = 73.933356
-    //     return this.state.activities.map((activity, i) => 
+    //     return state.activities.map((activity, i) => 
     //         <Marker
     //             lat={lat}
     //             lng={lng}
@@ -40,29 +49,29 @@ class Profile extends React.Component {
     //     )
     // }
 
-    render() {
-        // console.log(this.props.activities);
 
-        return (
-            <div> 
-                {this.state.activities ?
-                    <div>
-                        <div className='profile'>
-                            <img src={this.props.currentUser.image} className='profile_image' alt={this.props.currentUser.name} />
-                            <div className='profile_name'>{this.props.currentUser.name}</div>
-                            <div className='profile_username'>{this.props.currentUser.username}</div>
-                            <div className='profile_details'>{this.props.currentUser.city}</div>
-                            {/* <AddActivity /> */}
-                            {/* {this.state.addActivityState ? <div><AddActivity /> <br/> <button onClick={this.addActivityStateSwitch}>Close Form</button></div>: <button onClick={this.addActivityStateSwitch}>AddActivity</button>} */}
-                            {/* {this.renderMyActivities()} */}
-                            {/* <EditProfile /> */}
-                        </div>
-                        {/* <BigMap renderMarkers={this.renderMarkersForActivities} /> */}
-                    </div>
-                    : null}
+
+    return (
+        <div>
+
+            <div>
+                {props.currentUser ?
+                    <div className='profile'>
+                        <img src={props.currentUser.image} className='profile_image' alt={props.currentUser.name} />
+                        <div className='profile_name'>{props.currentUser.name}</div>
+                        <div className='profile_username'>{props.currentUser.username}</div>
+                        <div className='profile_details'>{props.currentUser.city}</div>
+                        {/* <AddActivity /> */}
+                        {/* {state.addActivityState ? <div><AddActivity /> <br/> <button onClick={addActivityStateSwitch}>Close Form</button></div>: <button onClick={addActivityStateSwitch}>AddActivity</button>} */}
+                        {/* {renderMyActivities()} */}
+                        {/* <EditProfile /> */}
+                    </div> : null}
+
             </div>
-        )
-    }
+      
+            {/* <BigMap lat={lat} lng={lng}/> */}
+        </div>
+    )
 }
 
 export default Profile 

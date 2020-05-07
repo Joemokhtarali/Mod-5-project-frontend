@@ -1,8 +1,14 @@
 const defaultState = {
     categories: [],
     activities: [], 
-    currentUser: {id: 1, username:'Mocha', city:'New York City', password:'1234', image:"https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"}
+    currentUser: null //{id: 1, username:'Mocha', city:'New York City', password:'1234', image:"https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"}
 }
+
+function parseDate(input){
+    var parts = input.match(/(\d+)/g);
+    // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+    return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+  }
 
 function reducer(state = defaultState, action) {
     switch (action.type) {
@@ -12,9 +18,11 @@ function reducer(state = defaultState, action) {
                 ...state, categories: action.payload.categories
             }
         case 'FETCH_ACTIVITIES':
-            let sortedActivities = action.payload.activities.slice().sort((a, b) => b.date - a.date)
+            let currentActivities = action.payload.activities.filter((activity) =>
+            parseDate(activity.date).getTime() >= new Date()
+        );
             return {
-                ...state, activities: sortedActivities
+                ...state, activities: currentActivities
             }
         case 'ADD_CATEGORY':
             return {
@@ -25,6 +33,7 @@ function reducer(state = defaultState, action) {
             return {
                 ...state, activities: [...state.activities, action.payload]
             }
+            
         case 'EDIT_ACTIVITY':
             let activitiesCopy = [...state.activities]
             let activityIndex = activitiesCopy.findIndex(activity => activity.id === action.payload.id)

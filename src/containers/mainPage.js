@@ -6,6 +6,7 @@ import LoginT from '../forms/login2';
 import Button from '@material-ui/core/Button';
 // import Login from '../forms/login';
 import Ballon from './airballoon1.mp4'
+import { GoogleLogin } from 'react-google-login';
 
 class MainPage extends React.Component {
 
@@ -27,14 +28,15 @@ class MainPage extends React.Component {
                 <video id='video1' autoPlay muted loop >
                     <source src={Ballon} type='video/mp4' />
                 </video>
-                <div style={{'margin-left':'6%'}}>
+                <div style={{'marginLeft':'6%'}}>
                     {this.state.signupState ? <SignupT /> : <LoginT />}
                     {/* <button onclick={this.changeSingupState}>New Member</button> */}
-                   
                 </div>
+                
+                
             </div>
 
-        )
+        ) 
     }
 }
 

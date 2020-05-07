@@ -13,10 +13,11 @@ class ActivitiesPage extends React.Component {
 
     state = {
         searchTerm: '',
-        searchButton: true,
+        searchButton: false,
         SearchedActivities: [],
         length: 0,
-        filteredCategory: 'All'
+        filteredCategory: 'All',
+        filteredDate: new Date()
     }
 
 
@@ -38,6 +39,12 @@ class ActivitiesPage extends React.Component {
         })
 
 
+    }
+
+    parseDate = (input) => {
+        var parts = input.match(/(\d+)/g);
+        // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+        return new Date(parts[0], parts[1] - 1, parts[2]); // months are 0-based
     }
 
     getActivtites = () => {
@@ -68,20 +75,31 @@ class ActivitiesPage extends React.Component {
 
         }
         if (this.state.searchButton) {
-            activitiesCopy = this.props.activities.filter(activity => activity.name.toLowerCase().includes(this.state.searchTerm))
+            activitiesCopy = this.props.activities.filter(activity =>
+                activity.name && activity.name.toLowerCase().includes(this.state.searchTerm))
         }
+
         return activitiesCopy
-        
+        //.filter((activity) =>
+          //  this.parseDate(activity.date).getTime() === this.state.filteredDate
+        //);
+
+    }
+
+    handleDateChange = (date) => {
+        this.setState({
+            filteredDate: date
+        })
     }
 
 
-
-
     render() {
+        console.log(this.state.filteredDate);
+        
         return (
             <div>
                 <Search changeSearchInput={this.changeSearchInput} changeButtonState={this.changeButtonState} />
-                <Filter SelectCategory={this.SelectCategory} />
+                <Filter SelectCategory={this.SelectCategory} handleDateChange={this.handleDateChange} />
                 <div activities-container>
                     <AllActivities activities={this.getActivtites()} />
                 </div>
