@@ -118,3 +118,4 @@ function SignupT(props) {
 }
 
 export default connect(null, { assignCurrentUser })(SignupT)
+// note
