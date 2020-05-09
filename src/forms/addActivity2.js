@@ -74,33 +74,37 @@ function AddActivityT(props) {
 
 
     function handleSubmit(event) {
-        event.preventDefault()
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address='${address}'&key=AIzaSyD4X3Xez83U_L3WZm6Fny8zsSxN_G4s1a4`)
-        .then(resp => resp.json())
-        .then(data => 
-               setUserRequest({ lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng })
-            //    setLat(data.results[0].geometry.location.lat), setLng(data.results[0].geometry.location.lng)
-        )
-        console.log(userRequest);
-        
-        let data = { name: name, image: image, date: selectedDate, address: address, about: about, category_id: parseInt(category_id), user_id: props.currentUser.id, lat: userRequest.lat, lng: userRequest.lng }
-        fetch('http://localhost:3000/activities', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(resp => resp.json()).then(response => {
-            props.addActivity()
-            setNewId(response.id)
-            console.log('newId');
-            console.log(newId);
-            history.push(`/activities/${response.id}`)
-            
-        })
-        // props.fetchPostActivityCreator(data)
-        // history.push(`/activities`)
+        if (name && address) {
+            event.preventDefault()
+            fetch(`https://maps.googleapis.com/maps/api/geocode/json?address='${address}'&key=AIzaSyD4X3Xez83U_L3WZm6Fny8zsSxN_G4s1a4`)
+                .then(resp => resp.json())
+                .then(data =>
+                    setUserRequest({ lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng })
+                    //    setLat(data.results[0].geometry.location.lat), setLng(data.results[0].geometry.location.lng)
+                )
 
+            let data = { name: name, image: image, date: selectedDate, address: address, about: about, category_id: parseInt(category_id), user_id: props.currentUser.id, lat: userRequest.lat, lng: userRequest.lng }
+
+            fetch('http://localhost:3000/activities', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(resp => resp.json()).then(response => {
+                props.addActivity()
+                setNewId(response.id)
+                console.log('newId');
+                console.log(newId);
+                history.push(`/activities/${response.id}`)
+
+            })
+            // props.fetchPostActivityCreator(data)
+            // history.push(`/activities`)
+
+        } else {
+            window.alert('Please make sure Address and Name are valid')
+        }
     }
     // console.log(userRequest);
 
@@ -139,7 +143,7 @@ function AddActivityT(props) {
                         required
                         id="standard"
                         label="address"
-                        placeholder='address'
+                        placeholder='Zip Code'
                         value={address}
                         onChange={handleChange6}
                     />

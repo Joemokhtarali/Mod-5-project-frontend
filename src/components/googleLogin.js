@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
 // or
 import { GoogleLogin } from 'react-google-login';
+const API = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY
 
 
 const responseGoogle = (response) => {
@@ -10,8 +11,8 @@ const responseGoogle = (response) => {
 }
 
 ReactDOM.render(
-    <GoogleLogin
-        
+    <GoogleLogin 
+        clientId={API}
         onSuccess={responseGoogle}
         isSignedIn={true}
         render={renderProps => (

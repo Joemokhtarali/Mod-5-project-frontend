@@ -7,15 +7,10 @@ const Search = (props) => {
     return (
         <div>
             <div className="ui large fluid icon input">
-            <TextField
+                <TextField
                     placeholder='Search Activity'
                     onChange={props.changeSearchInput}
                 />
-                {/* <input
-                   
-                    placeholder={""}
-                    onChange={props.changeSearchInput}
-                /> */}
                 <Button onClick={props.changeButtonState}>Search</Button>
             </div>
         </div>

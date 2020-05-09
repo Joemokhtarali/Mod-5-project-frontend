@@ -5,7 +5,7 @@ import ActivitiesContainerT from '../containers/ActivitiesContainer2'
 class Category extends React.Component {  
 
     render() {
-        // console.log('category', this.props.history);
+        console.log('category', this.props.category);
         return (
             <div className='category'>
                 <h3 >{this.props.category.category_type} </h3>

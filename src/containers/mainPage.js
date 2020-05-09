@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 // import Login from '../forms/login';
 import Ballon from './airballoon1.mp4'
 import { GoogleLogin } from 'react-google-login';
+import { connect } from 'react-redux'
 
 class MainPage extends React.Component {
 
@@ -22,26 +23,44 @@ class MainPage extends React.Component {
 
 
     render() {
+
         return (
             <div className='main-page'>
 
                 <video id='video1' autoPlay muted loop >
                     <source src={Ballon} type='video/mp4' />
                 </video>
-                <div style={{'marginLeft':'6%'}}>
-                    {this.state.signupState ? <SignupT /> : <LoginT />}
-                    {/* <button onclick={this.changeSingupState}>New Member</button> */}
+
+                {!this.props.currentUser ?
+                    <div style={{ 'marginLeft': '6%' }}>
+                        {(this.state.signupState) ?
+                            <div>
+                                <SignupT />
+                                <Button onClick={this.changeSingupState}>Alread Member</Button>
+                            </div>
+                            : <div>
+                                <LoginT />
+                                <Button onClick={this.changeSingupState}>New Member</Button>
+                            </div>}
+                    </div>
+                    : null}
+                <div>
+
                 </div>
-                
-                
+
             </div>
 
-        ) 
+        )
     }
 }
 
+const msp = (state) => {
+    return {
+        currentUser: state.currentUser
+    }
+}
 
-export default MainPage
+export default connect(msp)(MainPage)
 
 
 // {this.state.signup ? <div className='signup-combo'> <Signup history={this.props.history} /> <h6 className='h6-after-signup'>Member Already</h6> <button className='button-after-signup' onClick={this.changeSingupState}>Login</button></div> :

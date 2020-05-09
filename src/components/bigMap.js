@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker2 from './bigmapmarker'
-import {connect} from 'react-redux'
-
-const array = [{ lat: 40.764357, lng: -73.923462 }, { lat: 40.778790, lng: -73.906588 }, { lat: 40.744309, lng: -73.941860 }]
+import { connect } from 'react-redux'
+const API = process.env.REACT_APP_GOOGLE_API_KEY
 
 class BigMap extends React.Component {
-
-
-  //   React.useEffect(() => {
-  //   }, []);
-
-  onMarkerClick = (event) => {
-    
-  }
 
   displayMarkers = () => {
     return this.props.activities.map((activity, index) => {
@@ -31,40 +22,18 @@ class BigMap extends React.Component {
     })
   }
 
-  // mapMarkers = () => {
-  //   // debugger
-  //   return array.map(marker =>
-  //     <Marker
-  //       history={props.history}
-  //       key={marker.id}
-  //       onClick={onClick}
-  //       position={{ lat: marker.lat, lng: marker.lng }}
-  //     />
-  //   )
-  // }
-
-
   render() {
-    
+
     return (
       <div style={{ height: '50vh', width: '100%' }}>
         {this.props.lat ?
           <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyD4X3Xez83U_L3WZm6Fny8zsSxN_G4s1a4' }}
+            bootstrapURLKeys={{ key: API }}
             defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
             defaultZoom={13}
           >
             {this.displayMarkers()}
-            {/* <Marker
-              activity = {this.props.activity}
-              lat={this.state.lat}
-              lng={this.state.lng}
-              name={this.props.activity.name}
-              color='blue'
-              onClick={this.onMarkerClick}
-            /> */}
 
-            {/* {this.displayMarkers()} */}
           </GoogleMapReact>
           : null}
       </div>
@@ -73,7 +42,7 @@ class BigMap extends React.Component {
 }
 
 const msp = (state) => {
-  return{
+  return {
     activities: state.activities
   }
 }

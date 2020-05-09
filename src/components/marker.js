@@ -12,7 +12,7 @@ const Marker = (props) => {
 
 
   }
-  const { color, name, id } = props;
+  const { color} = props;
 
   return (
     <div onClick={onClickMarker}>
@@ -25,7 +25,7 @@ const Marker = (props) => {
       
         <div className="pulse" >
         {props.activity ? 
-          <h2>{props.activity.name}</h2>
+          <h4>{props.activity.name}</h4>
           : <p>No Name</p>}
         </div>
         

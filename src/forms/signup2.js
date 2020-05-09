@@ -54,8 +54,8 @@ function SignupT(props) {
             body: JSON.stringify(data)
         }).then(resp => resp.json()).then(response => {
             if (response.errors) { alert(response.errors) } else {
-                props.assignCurrentUser(response) 
-                
+                props.assignCurrentUser(response)
+
                 history.push("/categories");
                 localStorage.user_id = response.id
             }
@@ -95,8 +95,8 @@ function SignupT(props) {
                     <TextField
                         required
                         id="standard-required"
-                        label="City"
-                        placeholder='City'
+                        label="Zip code"
+                        placeholder='Zipcode'
                         value={city}
                         onChange={handleChange3}
                     />
@@ -109,75 +109,12 @@ function SignupT(props) {
                         onChange={handleChange4}
                     />
                     <Button onClick={handleSubmit}>Signup</Button>
-
-                    <Button >Already Member</Button>
-                    <div>
-
-
-                        {/* <FacebookLogin
-                        
-                        autoLoad={true}
-                        fields="name,email,picture"
-                        // onClick={componentClicked}
-                        callback={responseFacebook}
-                        cssClass="my-facebook-button-class"
-                        icon="fa-facebook"
-                    /> */}
-
-                    </div>
-
                 </FormControl>
 
             </div>
-            <div>
-                {/* <GoogleLogin
-                    
-                    buttonText="Login"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                /> */}
-            </div>
+
         </div>
     );
 }
 
 export default connect(null, { assignCurrentUser })(SignupT)
-
-
-
-// facebook funcs
-
-//check if logged in 
-// FB.getLoginStatus(function(response) {
-//     statusChangeCallback(response);
-// });
-
-// function checkLoginState() {
-//     FB.getLoginStatus(function(response) {
-//       statusChangeCallback(response);
-//     });
-//   }
-
-
-{/* <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '{your-app-id}',
-      cookie     : true,
-      xfbml      : true,
-      version    : '{api-version}'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script> */}
