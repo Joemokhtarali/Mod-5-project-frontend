@@ -25,7 +25,7 @@ class BigMap extends React.Component {
   render() {
 
     return (
-      <div style={{ height: '50vh', width: '100%' }}>
+      <div style={{ height: '100%', width: '100%' }}>
         {this.props.lat ?
           <GoogleMapReact
             bootstrapURLKeys={{ key: API }}

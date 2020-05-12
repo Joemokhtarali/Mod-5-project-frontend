@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Avatar from '@material-ui/core/Avatar';
 import '../stylesheets/chatroom.css'
+import { connect } from 'react-redux';
 
 function useMergeState(initialState) {
     const [state, setState] = useState(initialState);
@@ -17,7 +10,7 @@ function useMergeState(initialState) {
     return [state, setMergedState];
 }
 
-export default function ChatroomT(props) {
+function ChatroomT(props) {
 
     const [userRequest, setUserRequest] = useMergeState({
         chatroom: {},
@@ -27,8 +20,9 @@ export default function ChatroomT(props) {
     const [textValue, changeTextValue] = React.useState('')
 
     useEffect(() => {
-        fetch(`http://localhost:3000/chatrooms/${props.chatroom.id}`).then(resp => resp.json()).then(data => setUserRequest({ chatroom: data, messages: data.messages }))      //{changeChatroom(data) && changeMessages(data.messages)})
-
+        if (props.chatroom) {
+            fetch(`http://localhost:3000/chatrooms/${props.chatroom.id}`).then(resp => resp.json()).then(data => setUserRequest({ chatroom: data, messages: data.messages }))      //{changeChatroom(data) && changeMessages(data.messages)})
+        }
 
         // Creates the new websocket connection
         let socket = new WebSocket('ws://localhost:3000/cable');
@@ -81,10 +75,13 @@ export default function ChatroomT(props) {
 
     const { chatroom, messages } = userRequest;
 
-    const postMessage = (event) => {
-        // event.preventDefault()
-        let data = { content: textValue, chatroom_id: chatroom.id, user_id: props.currentUser.id, user_name: props.currentUser.username }
 
+    const postMessage = (event) => {
+        event.preventDefault()
+        let ul = document.getElementById('ul')
+        let data = { content: textValue, chatroom_id: chatroom.id, user_id: props.currentUser.id, user_name: props.currentUser.username }
+        console.log(data)
+        
         fetch('http://localhost:3000/messages', {
             method: 'Post',
             headers: {
@@ -97,7 +94,14 @@ export default function ChatroomT(props) {
             .then(resp => resp.json())
             .then(data => {
                 setUserRequest({ messages: [...messages, data] })
-            }).then(() => cleanScreen())
+            }).then(() => 
+            cleanScreen())
+            // .then(() =>
+            //     scrollTop = container.scrollHeight
+            // )
+            
+           
+
     }
 
 
@@ -107,23 +111,41 @@ export default function ChatroomT(props) {
 
     function formatAMPM(date1) {
         let date = date1.split('-')
-        let newDate = date[0] +'/'+ date[1] +'/'+ date[2].slice(0,2)
+        let newDate = date[0] + '/' + date[1] + '/' + date[2].slice(0, 2)
         return newDate.toString()
-    }           
+    }
 
     function renderMessages() {
-        return messages.map((msg, i) =>
-            // <li>{msg.content}</li>
-            <li style={{ "width": "100%" }}>
-                <div className="msj macro">
-                    <div className="avatar"><img className="img-circle" style={{ "width": "100%" }} src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B" /></div>
-                    <div className="text text-l">
-                        <p>{msg.content}</p>
-                        <p><small>{formatAMPM(msg.created_at)}</small></p>
-                    </div>
-                </div>
-            </li>
-        )
+        return messages.map(function (msg, i) {
+            if (msg.user_id === props.currentUser.id) {
+                return (
+                    <li style={{ "width": "100%" }}>
+                        {console.log(msg)}
+                        <div className="msj macro">
+                            <div className="avatar"><img className="img-circle" style={{ "width": "100%" }} src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B" /></div>
+                            <div className="text text-l">
+                                <p>{msg.content}</p>
+                                <p><small>{formatAMPM(msg.created_at)}</small></p>
+                            </div>
+                        </div>
+                    </li>
+                )
+            } else {
+                return (
+                    <li style={{ "width": "100%" }}>
+
+                        <div className="msj-rta macro">
+                            <div className="text text-l">
+                                <p>{msg.content}</p>
+                                <p><small>{formatAMPM(msg.created_at)}</small></p>
+                            </div>
+                            <div className="avatar"><img className="img-circle" style={{ "width": "100%" }} src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B" /></div>
+
+                        </div>
+                    </li>
+                )
+            }
+        })
     }
 
 
@@ -133,22 +155,32 @@ export default function ChatroomT(props) {
         }
     }
 
+    const ul = document.getElementById('ul')
+    ul.scrollTop = ul.scrollHeight
 
-
+    
     return (
         <div class="col-sm-3 col-sm-offset-4 frame">
-            <ul>{renderMessages()}</ul>
+            <ul id='ul'>{renderMessages()}</ul>
             <div>
                 <div class="msj-rta macro">
                     <div class="text text-r" style={{ 'background': 'whitesmoke !important' }}>
-                        <input class="mytext" placeholder="Type a message" />
+                        <input value={textValue} class="mytext" placeholder="Type a message" onChange={e => changeTextValue(e.target.value)}/>
                     </div>
 
                 </div>
                 <div style={{ 'padding': '10px' }}>
                     <span class="glyphicon glyphicon-share-alt"></span>
+                    <button onClick={postMessage}>Send</button>
                 </div>
             </div>
         </div>
     )
 }
+
+const msp = state => {
+    return {
+        currentUser: state.currentUser
+    }
+}
+export default connect(msp)(ChatroomT)

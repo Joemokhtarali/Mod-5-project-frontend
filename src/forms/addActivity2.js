@@ -37,9 +37,8 @@ function useMergeState(initialState) {
 function AddActivityT(props) {
     let history = useHistory();
     const classes = useStyles();
-    const [newId, setNewId] = React.useState(0);
     const [name, setname] = React.useState('');
-    const [image, setimage] = React.useState('');
+    const [image, setimage] = React.useState('https://www.brainfacts.org/-/media/Brainfacts2/Icons-3,-d-,0/Activity_Icon.png');
     const [about, setabout] = React.useState('');
     // const [date, setdate] = React.useState(new Date());
     const [address, setaddress] = React.useState('');
@@ -74,14 +73,9 @@ function AddActivityT(props) {
 
 
     function handleSubmit(event) {
-        if (name && address) {
+        if (name && address) { 
             event.preventDefault()
-            fetch(`https://maps.googleapis.com/maps/api/geocode/json?address='${address}'&key=AIzaSyD4X3Xez83U_L3WZm6Fny8zsSxN_G4s1a4`)
-                .then(resp => resp.json())
-                .then(data =>
-                    setUserRequest({ lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng })
-                    //    setLat(data.results[0].geometry.location.lat), setLng(data.results[0].geometry.location.lng)
-                )
+            
 
             let data = { name: name, image: image, date: selectedDate, address: address, about: about, category_id: parseInt(category_id), user_id: props.currentUser.id, lat: userRequest.lat, lng: userRequest.lng }
 
@@ -92,10 +86,7 @@ function AddActivityT(props) {
                 },
                 body: JSON.stringify(data)
             }).then(resp => resp.json()).then(response => {
-                props.addActivity()
-                setNewId(response.id)
-                console.log('newId');
-                console.log(newId);
+                props.addActivity(response)
                 history.push(`/activities/${response.id}`)
 
             })
@@ -106,19 +97,25 @@ function AddActivityT(props) {
             window.alert('Please make sure Address and Name are valid')
         }
     }
+
+    function noMember(){
+        if(!props.currentUser){
+            window.alert('Please Login to add a new Activity!')
+        }
+    }
     // console.log(userRequest);
 
     return (
         <div className='main-page'>
-            <Alert severity="warning" style={{ textAlign: 'center' }}>Due to Covid-19, Add an activity on your own risk!</Alert>
+            {/* <Alert severity="warning" style={{ textAlign: 'center' }}>Due to Covid-19, Add an activity on your own risk!</Alert> */}
             <video id='video1' autoPlay muted loop >
                 <source src={balloon} type='video/mp4' />
             </video>
-
+            {props.currentUser ? 
             <div className='form' >
 
-                <FormControl className={classes.margin}>
-                    <Button onClick={() => history.push('/activities')}>Back</Button>
+                <FormControl className={classes.margin} style={{'margin-left':'100px'}}>
+                    {/* <Button onClick={() => history.push('/activities')}>Back</Button> */}
                     <TextField
                         required
                         id="standard-required"
@@ -169,16 +166,22 @@ function AddActivityT(props) {
                     <Button onClick={handleSubmit}>Add Activity</Button>
                 </FormControl>
             </div>
-
+            : <div style={{'margin':'20px'}}> {noMember} <h4 style={{'textAlign':'center'}}> Please Login to add Activity</h4> </div>}
+            <h4 className='add-new-activity'>Add Activity to meet new people and have fun!!</h4>
         </div >
     );
 }
 
+const msp = state =>{ 
+    return {
+        currentUser: state.currentUser 
+    }
+}
+
 const mdp = (dispatch) => {
     return {
-        addActivity: () => {
-            dispatch({ type: 'ADD_ACTIVITY' })
-        }
+        addActivity: (data) => dispatch({ type: 'ADD_ACTIVITY', payload: data })
     };
 }
-export default connect(null, mdp)(AddActivityT)
+export default connect(msp, mdp)(AddActivityT)
+

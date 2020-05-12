@@ -6,7 +6,7 @@ class AllActivities extends React.Component {
 
     renderActivities = () => {
         return (
-            <div className='activities-page'>
+            <div className='activities-page'> 
                 {this.props.activities.map((activity, index) =>
                     <div className='activity-box' >
                         <Activity index={index} key={activity.id} activity={activity} history={this.props.history} />

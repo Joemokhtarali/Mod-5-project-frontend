@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 const Search = (props) => {
     return (
         <div>
-            <div className="ui large fluid icon input">
+            <div className="ui large fluid icon input" style={{'margin-right':'50px', 'margin-left':'40px'}}>
                 <TextField
                     placeholder='Search Activity'
                     onChange={props.changeSearchInput}

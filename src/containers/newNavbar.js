@@ -11,6 +11,9 @@ import { removeCurrentUser } from '../actionCreators/actionCreater'
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
+import Logo from './ballon.jpg'
+import SimpleMenu from './navOptions';
+import LoginT from '../forms/login2';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,16 +49,20 @@ function NewNavBar(props) {
 
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        MyActivities
-                        {props.currentUser ? <Button component={Link} to='/categories' color="inherit">Categories</Button> : null}
-                        {props.currentUser ? <Button component={Link} to='/activities' color="inherit">Activities</Button> : null}
+                        <div style={{'display':'flex'}}>
+                            <Avatar alt='logo' src={Logo} />
+                            {/* MyActivities */}
+                            {/* {props.currentUser ? <Button component={Link} to='/cat egories' color="inherit">Categories</Button> : null} */}
+                            {props.currentUser ? <Button component={Link} to='/activities' color="inherit">Activities</Button> : null}
+                        </div>
                     </Typography>
-                    {props.currentUser ?
+                    {/* {props.currentUser ?
                          <Button component={Link} to='/addactivity' color="inherit">Add Activity</Button> : null
-                    }
+                    } */}
                     {props.currentUser ?
-                        <Avatar alt={props.currentUser.username} src={props.currentUser.image} onClick={logOut} /> : null
+                        <SimpleMenu logOut={logOut} /> : null
                     }
+                    {/*  <Avatar alt={props.currentUser.username} src={props.currentUser.image} onClick={logOut} /> */}
                 </Toolbar>
             </AppBar>
         </div>

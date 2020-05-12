@@ -53,7 +53,7 @@ class App extends React.Component {
         <Route exact path='/' component={MainPage} />
         <Route path='/activities/:id' component={ActivityPage} />
         <Route exact path='/activities' component={ActivitiesPage} />
-        <Route path='/myprofile' render={() => <Profile currentUser={this.props.currentUser} />} />
+        <Route path='/myprofile' render={() => <Profile currentUser={this.props.currentUser} activities={this.props.activities}/>} />
       </Router>
     );
   }

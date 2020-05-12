@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import BigMap from '../components/bigMap';
 // import HomeSlides from '../components/homeSlides'
 
+const mapClass = {
 
+}
 
 function Home(props) {
     const [lat, setLat] = React.useState('');
@@ -19,16 +21,16 @@ function Home(props) {
     }, []);
 
     return (
-        <div className='home-page'> 
-            {/* <Jumbotron /> */}
-            {/* <HomeSlides categories={props.categories} /> */}
-            {/* <img src='https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' alt='image' height='700px' width='100%' /> */}
-            <h4>Browse By Category</h4>
-            
-            <CateogriesContainer history={props.history} />
-            <h3>Activities Around You</h3>
-            <BigMap lat={lat} lng={lng} history={props.history} activities={props.activities}/>
-        </div>
+        props.currentUser ?
+            <div className='home-page'>
+                <h4>Browse By Category</h4>
+                <CateogriesContainer history={props.history} />
+
+                {/* <h3>Activities Around You</h3>
+                <div style={{ height: '50vh', width: '50%' }}>
+                    <BigMap lat={lat} lng={lng} history={props.history} activities={props.activities} />
+                </div> */}
+            </div> : <div> {props.history.push('/')} </div>
     )
 }
 

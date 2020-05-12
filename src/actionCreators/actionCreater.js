@@ -18,6 +18,8 @@ export const fetchPostActivityCreator = (data) => dispatch => {
         },
         body: JSON.stringify(data)
     }).then(resp => resp.json()).then(response => {
+        console.log(response)
+        
         dispatch({ type: 'ADD_ACTIVITY', payload: response })
     })
 

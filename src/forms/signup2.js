@@ -56,7 +56,7 @@ function SignupT(props) {
             if (response.errors) { alert(response.errors) } else {
                 props.assignCurrentUser(response)
 
-                history.push("/categories");
+                history.push("/activities");
                 localStorage.user_id = response.id
             }
         })

@@ -10,27 +10,36 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
-        padding: '10px'
+        width: 345,
+        padding: '10px',
+        height: 500,
     },
     media: {
         height: 300,
     },
 });
+
+function parseDate(input) {
+    // var parts = input.match(/(\d+)/g);
+    // // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+    // return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+    let date = input.split('-')
+    if (date.length > 1) {
+        return date[0] + '/' + date[1] + '/' + date[2].slice(0, 2)
+    }
+    return input
+}
  
 export default function Activity(props) {
     let history = useHistory();
     const classes = useStyles();
     // console.log(props.history);
-    
+
     const { name, image, id, date, about } = props.activity
 
     return (
         <Card className={classes.root}>
             <CardActionArea>
-                {/* <div className={classes.media} id={`activity-${index}`}>
-                    <Link to={`/activities/${id}`}><img className={classes.media} src={image} alt={name} /></Link>
-                </div> */}
                 <CardMedia
                     className={classes.media}
                     image={image}
@@ -43,21 +52,13 @@ export default function Activity(props) {
                         {name}
                     </Typography>
                     <Typography gutterBottom variant="h6" component="h6" style={{ textAlign: 'center' }}>
-                        {date}
+                        {parseDate(date)}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {about ? about.split(" ").slice(0, 20).join(' ') : about}......more
+                        {about ? about.split(" ").slice(0, 20).join(' ') : about}
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                {/* <Button size="small" color="primary">
-          
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button> */}
-            </CardActions>
         </Card>
     );
 }

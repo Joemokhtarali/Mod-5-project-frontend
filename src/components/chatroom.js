@@ -6,8 +6,8 @@ import List from '@material-ui/core/List';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import '../stylesheets/chatroom.css'
 import Avatar from '@material-ui/core/Avatar';
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         '& > *': {
             margin: theme.spacing(1),
-        },
+        }, 
     },
 }));
 
@@ -132,6 +132,7 @@ export default function Chatroom(props) {
             .then(data => {
                 setUserRequest({ messages: [...messages, data] })
             }).then(() => cleanScreen())
+            // debugger
     }
 
 
@@ -139,17 +140,50 @@ export default function Chatroom(props) {
         changeTextValue('')
     }
 
-    function renderMessages() {
-        return messages.map((msg, i) => (
-            <div className={classes.flex} key={i}>
-                {/* <Chip label={msg.user_name} className={classes.chip} /> */}
-                <img style={{'width': '16px', 'height': '16px'}} src='https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B'/>
-                <Typography variant='h6' > {msg.content} </Typography >
-            </div>
-        ))
+    function formatAMPM(date1) {
+        let date = date1.split('-')
+        let newDate = date[0] + '/' + date[1] + '/' + date[2].slice(0, 2)
+        return newDate.toString()
     }
-    console.log(messages[0]);
+
+    function renderMessages() {
+        return messages.map(function (msg, i) {
+            if (msg.user_id === props.currentUser.id) {
+                return (
+                    <li style={{ "width": "100%" }}>
+                        {console.log(msg)}
+                        <div className="msj macro">
+                            <Avatar alt={msg.user_name} src='https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B' />
+                            {/* <div className="avatar"><img className="img-circle" style={{ "width": "25%", 'height':'80%' }} src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B" /></div> */}
+                            <div className="text text-l">
+                                <p className='pl'>{msg.content}</p>
+                                {msg ? <div> <p><small>{formatAMPM(msg.created_at)}</small></p></div> : <div> <p><small>{msg.created_at}</small></p></div>}
+                            </div>
+                        </div>
+                    </li>
+                )
+            } else {
+                return (
+                    <li style={{ "width": "100%" }}>
+
+                        <div className="msj-rta macro"  >
+                            <div className="text text-r">
+                                <p className='pr'>{msg.content}</p>
+                                <p style={{ 'textAlign': 'left' }}><small>{formatAMPM(msg.created_at)}</small></p>
+                            </div>
+                            <Avatar src='https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B' />
+
+                        </div>
+                    </li>
+                )
+            }
+        })
+    }
+
+  
     
+
+
     function keyPressed(event) {
         if (event.key === "Enter") {
             postMessage()
@@ -157,26 +191,23 @@ export default function Chatroom(props) {
     }
 
 
-    function renderParticipants() {
-        return props.participants.map(p => <Avatar alt={p.name} src={p.image} />)
-    }
+    
 
     return (
-        <div>
+        
+        <div style={{'overflow': 'auto'}}>
             <Paper className={classes.root}>
                 <Typography variant='h5' component='h5'>
                     Chat Room
                 </Typography>
 
                 <div className={classes.flex}>
-                    <div className={classes.chatwindow}>
-                        <List>
+                    <div class="col-md-12 col-md-offset-12 frame" >
+                        <ul>
                             {renderMessages()}
-                        </List>
+                        </ul>
                     </div>
-                    {/* <div style={{ float: "left", clear: "both" }}
-                        ref={(el) => { messagesEndRef = el; }}>
-                    </div> */}
+
                 </div>
 
                 <div className={classes.flex}>
@@ -196,18 +227,10 @@ export default function Chatroom(props) {
                 </div>
 
             </Paper>
-
-            <Paper className={classes.root}>
-                <Typography variant='h4' component='h4'>
-                    Participants
-                </Typography>
-                <div className={classes.avatars}>
-                    {renderParticipants()}
-                </div>
-            </Paper>
         </div>
     )
 }
+
 
 
 

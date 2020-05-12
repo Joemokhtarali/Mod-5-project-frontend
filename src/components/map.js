@@ -24,10 +24,8 @@ class Map extends Component {
   }
 
   render() {
-    console.log(API);
-
     return (
-      <div style={{ height: '50vh', width: '100%' }}>
+      <div style={{ height: '50vh', width: '100%'}}>
         {this.state.lat ?
           <GoogleMapReact
             bootstrapURLKeys={{ key: API }}

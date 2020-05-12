@@ -5,9 +5,6 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import { useHistory } from "react-router-dom";
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    flexWrap: 'nowrap',
+    // flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
   },
@@ -31,23 +28,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-export default function ActivitiesContainerT(props) {
+/**
+ * The example data is structured as follows:
+ *
+ * import image from 'path/to/image.jpg';
+ * [etc...]
+ *
+ * const tileData = [
+ *   {
+ *     img: image,
+ *     title: 'Image',
+ *     author: 'author',
+ *   },
+ *   {
+ *     [etc...]
+ *   },
+ * ];
+ */
+export default function ActivitiesContainer(props) {
   const classes = useStyles();
-  let history = useHistory();
-
 
   return (
     <div className={classes.root}>
-      <GridList className={classes.gridList} cols={3}>
-        {props.activities.map((tile) => (
-          <GridListTile key={tile.id}>
-            <img src={tile.image} alt={tile.name} onClick={() => history.push(`/activities/${tile.id}`)} />
+      <GridList className={classes.gridList} cols={2.5}>
+      {props.activities.map((tile) => (
+          <GridListTile key={tile.img}>
+            <img src={tile.img} alt={tile.title} />
             <GridListTileBar
-              title={tile.name}
+              title={tile.title}
               classes={{
                 root: classes.titleBar,
-                title: classes.name,
+                title: classes.title,
               }}
               actionIcon={
                 <IconButton aria-label={`star ${tile.title}`}>
@@ -59,6 +70,5 @@ export default function ActivitiesContainerT(props) {
         ))}
       </GridList>
     </div>
-  )
+  );
 }
-

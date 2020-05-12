@@ -1,30 +1,105 @@
-.profile {
+.main {
+    display: flex;
+    flex-direction: row;
+}
+.left-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-img {
     font-family: sans-serif;
     text-align: center;
-    max-width: 300px;
+    width: 500px;
+    height: 400px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 20px
+    margin-left: 5px;
+    /* padding: 20px; */
+    /* margin-left: 200px; */
 }
 
 .profile_image {
     width: 250;
-    height: 250px;
+    height: 250px; 
     object-fit: cover;
-    border-radius: 50%;
-    margin: 0 auto 20px auto
-}
+    border-radius: 10%;
+    margin: 1px auto 20px auto
 
-.profile_name {
-    font-size: 1.2em;
-    font-weight: bold; 
-}
-
-.profile_username {
-    margin-bottom: 10px;
-    /* font-size: 1.2em; */
-    
 }
 
 .profile_details {
-
+    font-size: 1.2em;
+    font-family: monospace;
+    margin-bottom: 10px;
+    color: #0e218b;
+    
 }
+
+Button {
+   font-family: monospace;
+}
+
+/* map */
+.map{
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.activities-around{
+    /* text-align: center; */
+    font-size: 1.5em;
+    font-family: fantasy;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: #0e218b;
+}
+.activities-around2{
+    /* text-align: center; */
+    font-size: 1.5em;
+    font-family: fantasy;
+    margin-top: 20px;
+    margin-left: 105px;
+    color: #0e218b;
+}
+
+
+
+/* Right Side */
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.my-activities{
+    width: 700px;
+    height: 880px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    overflow:auto;
+    /* z-index: unset; */
+}
+
+.activity-pro{
+ margin: 10px;
+ padding: 10px;
+ border: 3px #f3f3f3 solid;
+box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+transition: all 0.3s linear;
+  /* cursor: pointer;
+  background-color: #f3f3f3;
+  padding: 2px;
+  max-width: 220px;
+  text-align: left;
+  margin: 0 auto; */
+}
+
+.joined-activities{
+    width: 700px;
+    height: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-left: 100px;
+}
+

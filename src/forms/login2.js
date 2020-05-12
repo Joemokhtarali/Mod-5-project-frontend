@@ -37,7 +37,6 @@ function LoginT(props) {
     function handleSubmit(event) {
         event.preventDefault()
         let data = { username: username, password: password }
-        console.log(data);
         
         fetch('http://localhost:3000/login', {
             method: 'POST',
@@ -53,7 +52,7 @@ function LoginT(props) {
                     alert(response.errors)
                 } else {
                     props.assignCurrentUser(response)
-                    history.push("/categories");
+                    history.push("/activities");
                     localStorage.user_id = response.id
                 }
             })

@@ -18,7 +18,7 @@ class CateogriesContainer extends React.Component {
                 {this.renderCategories()}
             </div>
  
-        )
+        ) 
     }
 }
 

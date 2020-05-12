@@ -55,7 +55,7 @@ class ActivitiesPage extends React.Component {
 
                 activitiesCopy = [...this.props.activities]
                 break;
-            case 'Theaters':
+            case 'Beach':
 
                 activitiesCopy = this.props.activities.filter(a => a.category_id === 1)
                 break;
@@ -81,7 +81,7 @@ class ActivitiesPage extends React.Component {
 
         return activitiesCopy
         //.filter((activity) =>
-          //  this.parseDate(activity.date).getTime() === this.state.filteredDate
+        //  this.parseDate(activity.date).getTime() === this.state.filteredDate
         //);
 
     }
@@ -94,16 +94,21 @@ class ActivitiesPage extends React.Component {
 
 
     render() {
-        console.log(this.state.filteredDate);
-        
+        // console.log(this.state.filteredDate);
+
         return (
-            <div>
-                <Search changeSearchInput={this.changeSearchInput} changeButtonState={this.changeButtonState} />
-                <Filter SelectCategory={this.SelectCategory} handleDateChange={this.handleDateChange} />
-                <div activities-container>
-                    <AllActivities activities={this.getActivtites()} />
+            this.props.currentUser ?
+                <div>
+                    <div style={{'display':'flex'}}>
+                        <Search changeSearchInput={this.changeSearchInput} changeButtonState={this.changeButtonState} />
+                        <Filter SelectCategory={this.SelectCategory} handleDateChange={this.handleDateChange} />
+                    </div>
+                    <div activities-container>
+                        <AllActivities activities={this.getActivtites()} />
+                    </div>
                 </div>
-            </div>
+                : <div>  </div>
+            //<h4 style={{'margin': '20px'}}>Please Login First </h4> 
         )
     }
 }

@@ -10,11 +10,11 @@ class Filter extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{'margin-right':'120px', 'margin-left':'200px'}}>
                 <Button>Filter:</Button>
                 <select onChange={this.props.SelectCategory}>
                     <option value="All">All</option>
-                    <option value="Theaters">Theaters</option>
+                    <option value="Beach">Beach</option>
                     <option value="Sports">Sports</option>
                     <option value="Nature">Nature</option>
                     <option value="Art galleries and Museums">Art galleries and Museums</option>

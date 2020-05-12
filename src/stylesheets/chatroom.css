@@ -2,13 +2,13 @@
     border:0;padding:10px;background:whitesmoke;
 }
 .text{
-    width:75%;display:flex;flex-direction:column;
+    width:100%;display:flex;flex-direction:column;
 }
-.text > p:first-of-type{
-    width:100%;margin-top:0;margin-bottom:auto;line-height: 13px;font-size: 12px;
+.pl{
+    width:100%;margin-top:0;margin-bottom:auto;margin-left:10px;line-height: 13px;font-size: 14px; text-align: left;
 }
 .text > p:last-of-type{
-    width:100%;text-align:right;color:silver;margin-bottom:-7px;margin-top:auto;
+    width:100%;text-align:right;color:#0023e2;margin-bottom:-7px;margin-top:auto;opacity:60%;
 }
 .text-l{
     float:left;padding-right:10px;
@@ -16,16 +16,25 @@
 .text-r{
     float:right;padding-left:10px;
 }
+.pr {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: auto;
+    margin-right: 30px;
+    line-height: 13px;
+    font-size: 14px;
+    text-align: right;
+}
 .avatar{
     display:flex;
     justify-content:center;
     align-items:center;
-    width:25%;
+    width:50%;
     float:left;
     padding-right:10px;
 }
 .macro{
-    margin-top:5px;width:85%;border-radius:5px;padding:5px;display:flex;
+    margin-top:5px;width:100%;height:50px;border-radius:5px;padding:5px;display:flex;
 }
 .msj-rta{
     float:right;background:whitesmoke;
@@ -53,11 +62,11 @@ ul {
     list-style-type: none;
     padding:18px;
     position:absolute;
-    bottom:47px;
+    bottom:20px;
     display:flex;
     flex-direction: column;
     top:0;
-    overflow-y:scroll;
+    overflow:auto;
 }
 .msj:before{
     width: 0;
