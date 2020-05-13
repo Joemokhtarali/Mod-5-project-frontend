@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import '../stylesheets/chatroom.css'
 import Avatar from '@material-ui/core/Avatar';
+import '../stylesheets/chatroom.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -117,7 +115,7 @@ export default function Chatroom(props) {
 
     const postMessage = (event) => {
         // event.preventDefault()
-        let data = { content: textValue, chatroom_id: chatroom.id, user_id: props.currentUser.id, user_name: props.currentUser.username }
+        let data = { content: textValue, chatroom_id: chatroom.id, user_id: props.currentUser.id, user_name: props.currentUser.username, user_image: props.currentUser.image}
 
         fetch('http://localhost:3000/messages', {
             method: 'Post',
@@ -146,18 +144,19 @@ export default function Chatroom(props) {
         return newDate.toString()
     }
 
+    console.log(props.currentUser);
+
     function renderMessages() {
         return messages.map(function (msg, i) {
             if (msg.user_id === props.currentUser.id) {
-                return (
+                return ( 
                     <li style={{ "width": "100%" }}>
-                        {console.log(msg)}
                         <div className="msj macro">
-                            <Avatar alt={msg.user_name} src='https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B' />
-                            {/* <div className="avatar"><img className="img-circle" style={{ "width": "25%", 'height':'80%' }} src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B" /></div> */}
+                            <Avatar alt={msg.user_name} src={props.currentUser.image} />
+                            {/* <div className="avatar"><img className="img-circle" style={{ "width": "25%", 'height':'80%' }} alt={msg.user_name} src={props.currentUser.image}/></div> */}
                             <div className="text text-l">
-                                <p className='pl'>{msg.content}</p>
-                                {msg ? <div> <p><small>{formatAMPM(msg.created_at)}</small></p></div> : <div> <p><small>{msg.created_at}</small></p></div>}
+                                <p style={{ 'textAlign': 'left', 'color':'black', 'marginLeft': '25px'}}>{msg.content}</p>
+                                {msg ? <div> <p style={{ 'textAlign': 'right', 'margin':'5px', 'color':'#0e218b', 'opacity':'60%' }}><small>{formatAMPM(msg.created_at)}</small></p></div> : <div> <p style={{ 'textAlign': 'right' }}><small>{msg.created_at}</small></p></div>}
                             </div>
                         </div>
                     </li>
@@ -171,7 +170,7 @@ export default function Chatroom(props) {
                                 <p className='pr'>{msg.content}</p>
                                 <p style={{ 'textAlign': 'left' }}><small>{formatAMPM(msg.created_at)}</small></p>
                             </div>
-                            <Avatar src='https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/71000419_531421064288637_8191439997199450112_n.jpg?_nc_cat=111&_nc_sid=7aed08&_nc_ohc=LjaGLtgohSUAX_1Po4C&_nc_ht=scontent-lga3-1.xx&oh=4475aa15dcadd81ebc8aa883b9724825&oe=5EB43E3B' />
+                            <Avatar src={msg.user_image}  />
 
                         </div>
                     </li>

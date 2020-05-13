@@ -4,16 +4,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom'
 import { removeCurrentUser } from '../actionCreators/actionCreater'
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
-import Logo from './ballon.jpg'
+import Logo from '../media/ballon.jpg'
 import SimpleMenu from './navOptions';
-import LoginT from '../forms/login2';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +50,7 @@ function NewNavBar(props) {
                             <Avatar alt='logo' src={Logo} />
                             {/* MyActivities */}
                             {/* {props.currentUser ? <Button component={Link} to='/cat egories' color="inherit">Categories</Button> : null} */}
-                            {props.currentUser ? <Button component={Link} to='/activities' color="inherit">Activities</Button> : null}
+                            {props.currentUser ? <Button style={{'marginLeft': '50px'}} component={Link} to='/activities' color="inherit">Activities</Button> : null}
                         </div>
                     </Typography>
                     {/* {props.currentUser ?

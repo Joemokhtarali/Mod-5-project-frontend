@@ -1,0 +1,46 @@
+.main {
+background-color: rgb(240, 241, 242);
+opacity: 90%;
+}
+
+.profile {
+  font-family: sans-serif;
+  text-align: center;
+  width: 1000px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 30px 30px;
+  margin-left: 250px;
+  
+} 
+
+.image {
+  max-width: 650px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10%;
+  margin: 0 auto 20px auto
+}
+
+.name {
+  font-size: 1.2em;
+  font-weight: bold; 
+}
+.date {
+  margin-bottom: 10px;
+}
+
+
+
+.map { 
+    height: 100%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .participants{
+    margin-left: 200px;
+  }

@@ -1,19 +1,14 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Alert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
 import { fetchPatchActivityCreator } from '../actionCreators/actionCreater'
 import { connect } from 'react-redux'
-import '../stylesheets/mainPage.css'
 import DatePicker from "react-datepicker";
-
-
-
-
+import '../stylesheets/mainPage.css'
 
 
 const useStyles = makeStyles((theme) => ({

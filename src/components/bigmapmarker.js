@@ -1,5 +1,5 @@
 import React from 'react';
-import './marker.css';
+import '../stylesheets/marker.css'
 import { useHistory } from "react-router-dom";
 
 
@@ -9,7 +9,7 @@ const Marker2 = (props) => {
   const onClickMarker = (event) => {
     if (props.activity) { history.push(`/activities/${props.activity.id}`) }
   }
-  const { color, name, id } = props;
+  const {color} = props;
 
   return (
     <div onClick={onClickMarker}>

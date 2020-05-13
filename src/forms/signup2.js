@@ -1,13 +1,11 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 import { assignCurrentUser } from '../actionCreators/actionCreater'
 import { connect } from 'react-redux'
-import FacebookLogin from 'react-facebook-login';
-import { GoogleLogin } from 'react-google-login';
 
 
 
@@ -62,15 +60,6 @@ function SignupT(props) {
         })
     }
 
-    const responseGoogle = (response) => {
-        console.log(response);
-    }
-
-    const responseFacebook = (response) => {
-        // console.log(response);
-    }
-
-
     return (
         <div>
             <div>
@@ -118,4 +107,3 @@ function SignupT(props) {
 }
 
 export default connect(null, { assignCurrentUser })(SignupT)
-// note

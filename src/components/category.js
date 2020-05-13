@@ -1,6 +1,5 @@
 import React from 'react'
 import ActivitiesContainerT from '../containers/ActivitiesContainer2'
-import ActivitiesContainer from '../containers/ActivitiesContainer'
 
 
 class Category extends React.Component {  
@@ -11,7 +10,6 @@ class Category extends React.Component {
                 <h3 >{this.props.category.category_type} </h3>
                 <br />
                 <ActivitiesContainerT activities={this.props.activities} history={this.props.history}/>
-                {/* <ActivitiesContainer activities={this.props.activities} history={this.props.history}/> */}
                 <br />
                 <br />
             </div >

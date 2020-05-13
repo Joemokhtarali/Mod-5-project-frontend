@@ -2,8 +2,7 @@ import React from 'react'
 import BigMap from './bigMap'
 import '../stylesheets/profile.css'
 import 'typeface-roboto';
-import { useMouseAction, useMouseDown, useMouseUp } from "use-mouse-action"
-import { Button, Avatar } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { connect } from 'react-redux'
 import { useHistory } from "react-router-dom";
 
@@ -21,9 +20,9 @@ function Profile(props) {
         });
     }, []);
 
-    function renderUsers(array) {
-        return array.map(ele => <li>{ele.user_name}</li>)
-    }
+    // function renderUsers(array) {
+    //     return array.map(ele => <li>{ele.user_name}</li>)
+    // }
 
     function renderActivities() {
         let myActivities = props.activities.filter(a => a.user_id === props.currentUser.id)
@@ -41,10 +40,6 @@ function Profile(props) {
     //         .then(resp => resp.json())
     //         .then(user => setState({ activities: user.activities }))
     // }
-
-
-
-    // console.log(props.activities[0])
 
     return (
         <div>

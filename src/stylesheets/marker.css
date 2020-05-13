@@ -98,3 +98,9 @@
 a:hover + .infoDiv {
     display: block;
 }
+
+h5{
+  border:1px 1px 1px 1px black solid;
+  /* font-size: 20em; */
+  
+}

@@ -31,7 +31,7 @@
     font-size: 1.2em;
     font-family: monospace;
     margin-bottom: 10px;
-    color: #0e218b;
+    /* color: #0e218b; */
     
 }
 
@@ -50,16 +50,18 @@ Button {
     font-size: 1.5em;
     font-family: fantasy;
     margin-top: 20px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     color: #0e218b;
+    text-align: center;
 }
 .activities-around2{
     /* text-align: center; */
     font-size: 1.5em;
     font-family: fantasy;
     margin-top: 20px;
-    margin-left: 105px;
+    /* margin-left: 105px; */
     color: #0e218b;
+    text-align: center;
 }
 
 

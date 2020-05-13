@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import Activity from '../components/activity'
 import Search from '../components/search'
 import AllActivities from './allActivities'
 import Filter from '../components/filter'
-import './ActivitiesPage.css'
+import '../stylesheets/ActivitiesPage.css'
 
 
 
@@ -92,10 +91,14 @@ class ActivitiesPage extends React.Component {
         })
     }
 
+    formatAMPM = (date1) => {
+        let date = date1.split('-')
+        let newDate = date[0] + '/' + date[1] + '/' + date[2].slice(0, 2)
+        return newDate.toString()
+    }
 
     render() {
         // console.log(this.state.filteredDate);
-
         return (
             this.props.currentUser ?
                 <div>

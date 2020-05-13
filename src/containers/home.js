@@ -1,13 +1,8 @@
 import React from 'react'
 import CateogriesContainer from './categoriesContainer'
-import '../../src/index.css'
 import { connect } from 'react-redux'
-import BigMap from '../components/bigMap';
-// import HomeSlides from '../components/homeSlides'
+import '../../src/index.css'
 
-const mapClass = {
-
-}
 
 function Home(props) {
     const [lat, setLat] = React.useState('');

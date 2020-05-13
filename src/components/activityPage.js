@@ -4,14 +4,11 @@ import { fetchDeleteActivityCreator } from '../actionCreators/actionCreater'
 import EditActivityT from '../forms/editActivity2'
 import Map from './map'
 import Chatroom from './chatroom'
-import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
-import './activityPage.css'
-import ChatroomT from './chatroom2'
+import '../stylesheets/activityPage.css'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar';
-import { makeStyles } from '@material-ui/core/styles';
 
 
 
@@ -72,8 +69,6 @@ class ActivityPage extends React.Component {
         this.props.history.push('/activities')
     }
 
-
-
     startChatFunc = () => {
         this.setState({ startChat: !this.state.startChat })
         fetch('http://localhost:3000/chatrooms', {
@@ -106,7 +101,7 @@ class ActivityPage extends React.Component {
 
                             {this.state.host ?
                                 <div className='profile'>
-                                    <img className='image' src={this.state.activity.image}></img>
+                                    <img className='image' alt='' src={this.state.activity.image}></img>
                                     <div className='name'>{this.state.activity.name}</div>
                                     <div className='address'>Address: {this.state.activity.address}</div>
                                     <div className='date'>Happening on:{this.parseDate(this.state.activity.date)}</div>
@@ -130,7 +125,7 @@ class ActivityPage extends React.Component {
                                     <Typography variant='54' component='h5' >
                                         Participants
                             </Typography >
-                                    <div style={{ 'display': 'flex', 'flexDirection': 'row', 'marginLeft': '30px'}}>
+                                    <div style={{ 'display': 'flex', 'flexDirection': 'row', 'marginLeft': '30px' }}>
                                         {this.renderParticipants()}
 
                                     </div>

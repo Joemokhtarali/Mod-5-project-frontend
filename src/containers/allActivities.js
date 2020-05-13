@@ -1,6 +1,6 @@
 import React from 'react'
 import Activity from '../components/activity'
-import './ActivitiesPage.css'
+import '../stylesheets/ActivitiesPage.css'
 
 class AllActivities extends React.Component {
 

@@ -1,21 +1,15 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Alert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
-import { fetchPostActivityCreator } from '../actionCreators/actionCreater'
 import { connect } from 'react-redux'
-import '../stylesheets/mainPage.css'
-import balloon from './airballon2.mp4'
+import balloon from '../media/airballon2.mp4'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-
-
-
+import '../stylesheets/mainPage.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +34,6 @@ function AddActivityT(props) {
     const [name, setname] = React.useState('');
     const [image, setimage] = React.useState('https://www.brainfacts.org/-/media/Brainfacts2/Icons-3,-d-,0/Activity_Icon.png');
     const [about, setabout] = React.useState('');
-    // const [date, setdate] = React.useState(new Date());
     const [address, setaddress] = React.useState('');
     const [category_id, setcategory_id] = React.useState(1);
     const [selectedDate, setSelectedDate] = React.useState(new Date());

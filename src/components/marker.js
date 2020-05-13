@@ -1,5 +1,5 @@
 import React from 'react';
-import './marker.css';
+import '../stylesheets/marker.css'
 import { useHistory } from "react-router-dom";
 
 
@@ -25,7 +25,7 @@ const Marker = (props) => {
       
         <div className="pulse" >
         {props.activity ? 
-          <h4>{props.activity.name}</h4>
+          <h5>{props.activity.name}</h5>
           : <p>No Name</p>}
         </div>
         

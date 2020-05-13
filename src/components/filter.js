@@ -1,17 +1,17 @@
 import React from 'react'
-import DatePicker from "react-datepicker";
 import Button from '@material-ui/core/Button';
+// import DatePicker from "react-datepicker";
 
 class Filter extends React.Component {
-    // value={this.state.value} onChange={this.handleChange}
+
     state = {
         selectedDate: new Date()
     }
 
     render() {
         return (
-            <div style={{'margin-right':'120px', 'margin-left':'200px'}}>
-                <Button>Filter:</Button>
+            <div style={{ 'margin-right': '120px', 'margin-left': '100px' }}>
+                <Button >Filter</Button>
                 <select onChange={this.props.SelectCategory}>
                     <option value="All">All</option>
                     <option value="Beach">Beach</option>
@@ -19,8 +19,8 @@ class Filter extends React.Component {
                     <option value="Nature">Nature</option>
                     <option value="Art galleries and Museums">Art galleries and Museums</option>
                 </select>
-                <Button>Pick Date:</Button>
-                <DatePicker selected={this.selectedDate} value={this.selectedDate} onChange={this.props.handleDateChange} />
+                {/* <Button onClick={() => {}}>Pick Date</Button>
+                <DatePicker selected={this.selectedDate} value={this.selectedDate} onChange={this.props.handleDateChange} /> */}
 
             </div>
         )

@@ -4,9 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SignupT from '../forms/signup2';
 import LoginT from '../forms/login2';
 import Button from '@material-ui/core/Button';
-// import Login from '../forms/login';
-import Ballon from './airballoon1.mp4'
-import { GoogleLogin } from 'react-google-login';
+import Ballon from '../media/airballoon1.mp4'
 import { connect } from 'react-redux'
 
 class MainPage extends React.Component {
