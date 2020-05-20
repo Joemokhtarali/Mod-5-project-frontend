@@ -18,7 +18,7 @@ class Filter extends React.Component {
                     <option value="Sports">Sports</option>
                     <option value="Nature">Nature</option>
                     <option value="Art galleries and Museums">Art galleries and Museums</option>
-                </select>
+                </select> 
                 {/* <Button onClick={() => {}}>Pick Date</Button>
                 <DatePicker selected={this.selectedDate} value={this.selectedDate} onChange={this.props.handleDateChange} /> */}
 

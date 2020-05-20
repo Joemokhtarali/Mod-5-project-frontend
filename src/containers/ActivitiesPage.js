@@ -98,7 +98,7 @@ class ActivitiesPage extends React.Component {
     }
 
     render() {
-        // console.log(this.state.filteredDate);
+        console.log(this.state.filteredCategory);
         return (
             this.props.currentUser ?
                 <div>
