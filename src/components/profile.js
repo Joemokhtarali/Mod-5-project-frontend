@@ -45,7 +45,7 @@ function Profile(props) {
         <div>
             {props.currentUser ?
 
-                <div className='main'>
+                <div className='main'> 
                     <div className='left-side'>
                         <h4 className='activities-around'>Info:</h4>
                         <div className='profile-img'>

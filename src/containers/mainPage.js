@@ -40,13 +40,14 @@ class MainPage extends React.Component {
                                 <LoginT />
                                 <Button onClick={this.changeSingupState}>New Member</Button>
                             </div>}
+
                     </div>
                     : null}
-                    <div className='intro'>
-                        <h4 className='h4'>Welcome to My Activities!</h4>
-                        <h4 className='h4'>Join current Activities or Create one!</h4>
-                        <h4 className='h4'>Meet people and make friends!</h4>
-                    </div>
+                <div className='intro'>
+                    <h4 className='h4'>Welcome to My Activities!</h4>
+                    <h4 className='h4'>Join current Activities or Create one!</h4>
+                    <h4 className='h4'>Meet people and make friends!</h4>
+                </div>
                 <div>
 
                 </div>

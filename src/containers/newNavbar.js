@@ -46,11 +46,11 @@ function NewNavBar(props) {
 
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        <div style={{'display':'flex'}}>
+                        <div style={{ 'display': 'flex' }}>
                             <Avatar alt='logo' src={Logo} />
                             {/* MyActivities */}
                             {/* {props.currentUser ? <Button component={Link} to='/cat egories' color="inherit">Categories</Button> : null} */}
-                            {props.currentUser ? <Button style={{'marginLeft': '50px'}} component={Link} to='/activities' color="inherit">Activities</Button> : null}
+                            {props.currentUser ? <Button style={{ 'marginLeft': '50px' }} component={Link} to='/activities' color="inherit">Activities</Button> : null}
                         </div>
                     </Typography>
                     {/* {props.currentUser ?
@@ -59,6 +59,11 @@ function NewNavBar(props) {
                     {props.currentUser ?
                         <SimpleMenu logOut={logOut} /> : null
                     }
+                    <div>
+                        <Button component={Link} to='/about' color="inherit"> About</Button>
+                        {!props.currentUser ? <Button component={Link} to='/' color="inherit"> Login</Button>: null}
+                        {!props.currentUser ? <Button component={Link} to='/' color="inherit"> Register</Button>: null}
+                    </div>
                     {/*  <Avatar alt={props.currentUser.username} src={props.currentUser.image} onClick={logOut} /> */}
                 </Toolbar>
             </AppBar>

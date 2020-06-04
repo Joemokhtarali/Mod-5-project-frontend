@@ -10,6 +10,7 @@ import MainPage from './containers/mainPage'
 import ActivityPage from './components/activityPage';
 import NewNavBar from './containers/newNavbar';
 import AddActivityT from './forms/addActivity2';
+import About from './components/about';
 
 
 
@@ -54,6 +55,7 @@ class App extends React.Component {
         <Route path='/activities/:id' component={ActivityPage} />
         <Route exact path='/activities' component={ActivitiesPage} />
         <Route path='/myprofile' render={() => <Profile currentUser={this.props.currentUser} activities={this.props.activities}/>} />
+        <Route path='/about' component={About} />
       </Router>
     );
   }
