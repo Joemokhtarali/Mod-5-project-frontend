@@ -4,3 +4,6 @@ Ruby on Rails RESTful Api & Postgresql for database
 implemented for Frontend user interface & state management
 Google Maps Api for location & Web Sockets to enable chat & Material Ui, FlexBox and Custom CSS for styling 
 Utilized User Authentication using JWT and Tokens to enable access to the right pages and information.
+
+Demo can be found on Youtube at 
+https://youtu.be/UHQR2-ej7ow
